@@ -9,58 +9,59 @@
 <html>
 	<head>
 		<title>Centro de Atención</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<script type="text/javascript" src="<c:url value="/bootstrap/js/jquery-1.11.2.min.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/bootstrap/js/bootstrap.js" />"></script>
 		<meta charset="utf-8">
 	</head>
 	<body>
-		<div style="width: 100%;">
-			<div class="line"></div>
-			<div class="topLine">
-				<div style="float: left;" class="headline">Formulario de registro</div>
-				<div style="float: right;">
-					<a
-						href="<c:url value="/main"/>"><c:out value="Home"/></a>
-				</div>
-				<br><br>
-				<form action="/registrarUsuario" method="post" accept-charset="utf-8">
-					<table BORDER=0>
-						<tr>
-							<td>Nombre</td>
-							<td><input type=text name="nombre"></td>
-							<td>Nacimiento</td>
-							<td><input type=date name="nacimiento"></td>
-						</tr>
-						<tr>
-							<td>Apellidos</td>
-							<td><input type=text name="apellido1"></td>
-							<td><input type=text name="apellido2"></td>
-						</tr>
-						<tr>
-							<td>DNI/NIF</td>
-							<td><input type=text name="dni"></td>
-							<td>Sexo</td>
-							<td>Hombre <input type=radio name="sexo" value="M"><br>
-								Mujer <input type=radio name="sexo" value="F">
-							</td>
-						</tr>
-						<tr>
-							<td>Teléfono</td>
-							<td><input type="number" name="telefono"></td>
-							<td>Móvil</td> 
-							<td><input type="number" name="movil"></td>
-						</tr>
-						<tr>
-							<td>Domicilio</td>
-							<td><input type="text" name="domicilio"></td>
-							<td>CP</td> 
-							<td><input type="number" name="cp"></td>
-						</tr>
-						<tr>
-							<td>Localidad</td>
-							<td><input type="text" name="localidad"></td>
-							<td>Provincia</td> 
-							<td>
-								<select name="provincia">
+		<nav class="navbar navbar-default">
+  		<div class="container-fluid">
+	    	<div class="navbar-header">
+	      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        	<span class="sr-only">Toggle navigation</span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	      		</button>
+	      		<a class="navbar-brand" href="#">Centro de Atención</a>
+	    	</div>
+	    	
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="<c:url value="/"/>">Home</a>
+                    <li><a href="<c:url value="/usuarios"/>"><c:out value="Usuarios"/></a></li>
+                    <li class="active"><a href="<c:url value="/registrar"/>"><c:out value="Registro"/></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                	<li><a><c:if test="${user != null}">Bienvenido, <c:out value="${user.nickname}"/></c:if></a></li>
+                	<li> <a href="<c:url value="${url}"/>"><c:out value="${urlLinktext}"/></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+     <div class ="container panel panel-default">
+     	<form action="/registrarUsuario" method="post" accept-charset="utf-8">
+     	<div class="row">
+     		<h3 class="text-center">Formulario de Registro</h3>
+				<div class="col-lg-4 text-center">
+					<div class="form-group">
+						<label for="nombre">Nombre del Paciente</label>
+						<input type="text" class="form-control" name="nombre">
+					</div>
+					<div class="form-group">
+						<label for="apellidos">Fecha de Nacimiento</label>
+						<input type="date" class="form-control" name="nacimiento">
+					</div>
+					<div class="form-group">
+						<label for="domicilio">Domicilio</label>
+						<input type="text" class="form-control" name="domicilio">
+					</div>	
+					<div class="form-group">
+						<label for="provincia">Provincia</label></br>
+						<select name="provincia">
 									<option VALUE="Albacete">Albacete</option>
 									<option VALUE="Alicante">Alicante</option>
 									<option VALUE="Almeria">Almería</option>
@@ -114,21 +115,57 @@
 									<option VALUE="Ceuta">Ceuta</option>
 									<option VALUE="Melilla">Melilla</option>
 								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>Comentarios</td>
-							<td>
-								<textarea rows="3" name="comentarios">Enfermedades, alergias, datos adicionales</textarea>
-							</td>
-						</tr>
-						<tr>
-						<td colspan="2" align="right"><input type="submit"
-									value="Finalizar registro" /></td>
-							</tr>
-					</table>
-				</form>
+					</div>			
+				</div>
+				<div class="col-lg-4 text-center">
+					<div class="form-group">
+						<label for="apellido1">Primer Apellido</label>
+						<input type="text" class="form-control" name="apellido1">
+					</div>
+					<div class="form-group">
+						<label for="sexo">Sexo</label>
+						<input type=radio name="sexo" value="M"> Hombre <input type=radio name="sexo" value="F"> Mujer
+					</div>
+					<div class="form-group">
+						<label for="localidad">Localidad</label>
+						<input type="text" class="form-control" name="localidad">
+					</div>
+					<div class="form-group">
+						<label for="cp">Código Postal</label>
+						<input type="number" class="form-control" name="cp">
+					</div>
+				</div>
+				<div class="col-lg-4 text-center">
+					<div class="form-group">
+						<label for="apellido2">Segundo Apellido</label>
+						<input type="text" class="form-control" name="apellido2">
+					</div>
+					<div class="form-group">
+						<label for="dni">DNI/NIF</label>
+						<input type="text" class="form-control" name="dni">
+					</div>
+					<div class="form-group">
+						<label for="telefono">Teléfono</label>
+						<input type="number" class="form-control" name="telefono">
+					</div>
+					<div class="form-group">
+						<label for="movil">Móvil</label>
+						<input type="number" class="form-control" name="movil">
+					</div>					
+				</div>
 			</div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="form-group">
+						<label for="comentarios">Comentarios</label><br>
+						<textarea style="width:100%;"rows="3" name="comentarios">Enfermedades, alergias, datos adicionales</textarea>
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Finalizar registro" />
+					</div>
+				</div>
+			</div>
+			</form>										
 		</div>
 	</body>
 </html>

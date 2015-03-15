@@ -11,68 +11,95 @@
 <html>
 	<head>
 		<title>Centro de Atención</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<script type="text/javascript" src="<c:url value="/bootstrap/js/jquery-1.11.2.min.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/bootstrap/js/bootstrap.js" />"></script>
 		<meta charset="utf-8">
 	</head>
 	<body>
-	
-		<div style="width: 100%;">
-		<div class="line"></div>
-		<div class="topLine">
-			<div style="float: left;" class="headline">Info del usuario</div>
-			<div style="float: right;">
-					<a
-						href="<c:url value="/main"/>"><c:out value="Home"/></a>
+		<nav class="navbar navbar-default">
+  		<div class="container-fluid">
+	    	<div class="navbar-header">
+	      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        	<span class="sr-only">Toggle navigation</span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	      		</button>
+	      		<a class="navbar-brand" href="#">Centro de Atención</a>
+	    	</div>
+	    	
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="<c:url value="/"/>">Home</a>
+                    <li><a href="<c:url value="/usuarios"/>"><c:out value="Usuarios"/></a></li>
+                    <li class="active"><a href="<c:url value="/registrar"/>"><c:out value="Registro"/></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                	<li><a><c:if test="${user != null}">Bienvenido, <c:out value="${user.nickname}"/></c:if></a></li>
+                	<li> <a href="<c:url value="${url}"/>"><c:out value="${urlLinktext}"/></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class ="container panel panel-default">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<br>
+				<h3>Información del Usuario</h3>
+				<br>
+				<table class="table table-striped">
+					<tr>
+						<th class="text-center">Nombre</th>
+						<th class="text-center">Apellidos</th>
+						<th class="text-center">Fecha de Nacimiento</th>
+						<th class="text-center">Sexo</th>
+						<th class="text-center">DNI/NIF</th>
+					</tr>
+					<tr>
+						<td><c:out value="${usuario.nombre}"/></td>
+						<td><c:out value="${usuario.apellidos}"/></td>
+						<td><c:out value="${usuario.nacimiento}"/></td>
+						<td><c:out value="${usuario.sexo}"/></td>
+						<td><c:out value="${usuario.dni}"/></td>
+					</tr>
+				</table>
+			</div>
 		</div>
-		<br /><br />	
-
-		<table>
-			<tr>
-							<td>Nombre</td>
-							<td><c:out value="${usuario.nombre}" /></td>
-							<td>Nacimiento</td>
-							<td><c:out value="${usuario.nacimiento}" /></td>
-						</tr>
-						<tr>
-							<td>Apellidos</td>
-							<td><c:out value="${usuario.apellidos}" /></td>
-						</tr>
-						<tr>
-							<td>DNI/NIF</td>
-							<td><c:out value="${usuario.dni}" /></td>
-							<td>Sexo</td>
-							<td><c:out value="${usuario.sexo}" /></td>
-						</tr>
-						<tr>
-							<td>Teléfono</td>
-							<td><c:out value="${usuario.telefono}" /></td>
-							<td>Móvil</td> 
-							<td><c:out value="${usuario.movil}" /></td>
-						</tr>
-						<tr>
-							<td>Domicilio</td>
-							<td><c:out value="${usuario.domicilio}" /></td>
-							<td>CP</td> 
-							<td><c:out value="${usuario.cp}" /></td>
-						</tr>
-						<tr>
-							<td>Localidad</td>
-							<td><c:out value="${usuario.localidad}" /></td>
-							<td>Provincia</td> 
-							<td><c:out value="${usuario.provincia}" /></td>
-						</tr>
-						<tr>
-							<td>Comentarios</td>
-							<td><c:out value="${usuario.datos}" /></td>
-						</tr>
-						<tr>
-							<td>Listado de sendores</td>
-							<td>Sensor X: valor</td>
-							<td>Sensor Y: valor</td>
-							<td>Sensor Z: valor</td>
-							<td>...</td>
-						</tr>
-		</table>
-		
+		<div class="row">
+			<div class="col-lg-6 text-center">
+				<h5><strong>Dirección Postal</strong></h5>
+				<ul>
+					<li>Domicilio: <c:out value="${usuario.domicilio}"/></li>
+					<li>Localidad: <c:out value="${usuario.localidad}"/></li>
+					<li>Provincia: <c:out value="${usuario.provincia}"/></li>
+					<li>C.P: <c:out value="${usuario.cp}"/></li>
+				</ul>
+				<c:out value="${usuario.datos}" />
+			</div>
+			<div class="col-lg-6 text-center">
+				<h5><strong>Comentarios</strong></h5><br>
+				<c:out value="${usuario.datos}" />
+				<br>
+				<h5><strong>Lista de Sensores</strong></h5>
+				<table class="table table-striped table-condensed table-bordered">
+					<tr>
+						<th class="text-center">Sensor</th>
+						<th class="text-center">Valor</th>
+					</tr>
+					<tr>
+						<td>Sensor 1</td>
+						<td class="danger">Valor Fuera de Rango</td>
+					</tr>
+					<tr>
+						<td>Sensor 2</td>
+						<td class="success">Valor dentro de los Rangos correctos</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>		
 	</body>
 </html>
