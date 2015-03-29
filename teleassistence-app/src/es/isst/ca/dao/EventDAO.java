@@ -15,4 +15,5 @@ public interface EventDAO {
 	public List<Location> listUserLocations(String originator);
 	public Location getUserLocation(String originator);
 	
+	
 }

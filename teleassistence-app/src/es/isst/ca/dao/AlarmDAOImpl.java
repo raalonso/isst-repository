@@ -53,6 +53,7 @@ public class AlarmDAOImpl implements AlarmDAO {
 		List<Alarm> alarms = q.getResultList();
 		return alarms;
 	}
+	
 
 	@Override
 	public List<Alarm> listUnattendedAlarms(String originator) {
