@@ -3,6 +3,7 @@ package es.isst.ca.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import es.isst.ca.model.Alarm;
 import es.isst.ca.model.DistressAlarm;
@@ -34,8 +35,35 @@ public class AlarmDAOImpl implements AlarmDAO {
 
 	@Override
 	public List<Alarm> listAlarms(String originator) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em
+				.createQuery("select t from Alarm t");
+				//.createQuery("select t from Alarm t where t.originator = :originator");
+		q.setParameter("originator", originator);
+		List<Alarm> alarms = q.getResultList();
+		return alarms;
+	}
+
+	@Override
+	public List<Alarm> listAttendedAlarms(String originator) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em
+				.createQuery("select t from Alarm t where t.originator = :originator");
+		q.setParameter("originator", originator);
+		List<Alarm> alarms = q.getResultList();
+		return alarms;
+	}
+
+	@Override
+	public List<Alarm> listUnattendedAlarms(String originator) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void clearAlarm(Long id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

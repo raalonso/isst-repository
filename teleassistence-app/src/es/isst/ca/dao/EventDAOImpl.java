@@ -56,4 +56,16 @@ public class EventDAOImpl implements EventDAO {
 		return events;
 	}
 
+	@Override
+	public List<Location> listUserLocations(String originator) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Location getUserLocation(String originator) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
