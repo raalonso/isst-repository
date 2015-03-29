@@ -14,8 +14,11 @@ import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
+import es.isst.ca.dao.AlarmDAO;
+import es.isst.ca.dao.AlarmDAOImpl;
 import es.isst.ca.dao.CaDAO;
 import es.isst.ca.dao.CaDAOImpl;
+import es.isst.ca.model.Alarm;
 import es.isst.ca.model.Alarma;
 
 public class MainServlet extends HttpServlet {
@@ -45,6 +48,15 @@ public class MainServlet extends HttpServlet {
 		req.getSession().setAttribute("alarmas", new ArrayList<Alarma>(alarmas));
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
+
+		//
+		
+		
+		
+		
+		//
+		
+		
 		
 		RequestDispatcher view = req.getRequestDispatcher("Home.jsp");
 		try {
