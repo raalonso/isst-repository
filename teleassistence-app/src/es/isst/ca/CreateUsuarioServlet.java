@@ -1,20 +1,13 @@
 package es.isst.ca;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.isst.ca.dao.AlarmDAO;
-import es.isst.ca.dao.AlarmDAOImpl;
 import es.isst.ca.dao.CaDAO;
 import es.isst.ca.dao.CaDAOImpl;
-import es.isst.ca.dao.EventDAO;
-import es.isst.ca.dao.EventDAOImpl;
-import es.isst.ca.model.Alarm;
 
 public class CreateUsuarioServlet extends HttpServlet {
 	
@@ -42,23 +35,7 @@ public class CreateUsuarioServlet extends HttpServlet {
 		dao.addUsuario(apellido1 + " " + apellido2, nombre, nacimiento, dni, sexo, telefono,
 				movil, domicilio, cp, localidad, provincia, datos);
 		
-//		EventDAO dao2 = EventDAOImpl.getInstance();
-//
-//		long millis = System.currentTimeMillis() % 1000;
-//
-//		dao2.addLocation("IMSI1234567890", new Long(millis), new Long(12), new Long(24));
-//		dao2.addAcceleration("IMSI1234567890", new Long(millis), new Double(12), new Double(12), new Double(12));
-//		
-//		AlarmDAO dao3 = AlarmDAOImpl.getInstance();
-//		
-//		dao3.addDistressAlarm("IMSI0123456789", new Long(millis), new Integer(1), Arrays.asList((Number) new Long(10), (Number) new Long(20)));
-//		dao3.addDistressAlarm("IMSI0000000001", new Long(millis), new Integer(1), Arrays.asList((Number) new Long(11), (Number) new Long(21)));
-//		dao3.addDistressAlarm("IMSI0000000002", new Long(millis), new Integer(1), Arrays.asList((Number) new Long(12), (Number) new Long(22)));
-//		dao3.addDistressAlarm("IMSI0000000003", new Long(millis), new Integer(1), Arrays.asList((Number) new Long(13), (Number) new Long(23)));
 
-		AlarmDAO dao2 = AlarmDAOImpl.getInstance();
-		List<Alarm> alarms = dao2.listAlarms("IMSI0123456789");
-		
 		resp.sendRedirect("/");
 		
 	}
