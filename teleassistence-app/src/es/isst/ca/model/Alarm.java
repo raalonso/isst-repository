@@ -22,6 +22,7 @@ public class Alarm implements Serializable {
 	private String originator;
 	private Long timestamp;
 	private Integer severity;
+	private Boolean attended; 
 	private List<Number> location;
 	
 	public Alarm(String name, Integer type, String originator, Long timestamp,
@@ -32,6 +33,7 @@ public class Alarm implements Serializable {
 		this.originator = originator;
 		this.timestamp = timestamp;
 		this.severity = severity;
+		this.attended = Boolean.FALSE;
 		this.location = location;
 	}
 	
@@ -73,6 +75,14 @@ public class Alarm implements Serializable {
 	
 	public void setSeverity(Integer severity) {
 		this.severity = severity;
+	}
+
+	public Boolean getAttended() {
+		return attended;
+	}
+
+	public void setAttended(Boolean attended) {
+		this.attended = attended;
 	}
 	
 	public List<Number> getLocation() {
