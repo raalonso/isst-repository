@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import es.isst.ca.model.Alarm;
+import es.isst.ca.model.Alarma;
 import es.isst.ca.model.DistressAlarm;
 
 public class AlarmDAOImpl implements AlarmDAO {
@@ -31,6 +32,15 @@ public class AlarmDAOImpl implements AlarmDAO {
 			em.persist(alarm);
 			em.close();
 		}
+	}
+	
+	@Override
+	public List<Alarm> listAlarms() {
+		EntityManager em = EMFService.get().createEntityManager();
+		// read the existing entries
+		Query q = em.createQuery("select t from Alarm t");
+		List<Alarm> alarms = q.getResultList();
+		return alarms;
 	}
 
 	@Override

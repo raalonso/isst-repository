@@ -52,22 +52,22 @@
 				<div class="row">
 					<div class="col-lg-12 text-center">
 						<br>
-						<h3>Tienes ${fn:length(alarmas)} alarmas pendientes</h3>
+						<h3>Tienes ${fn:length(alarms)} alarmas pendientes</h3>
 						<br>
 						<table class="table table-striped">
 							<tr>
 								<th class="text-center">Alarma</th>
-								<th class="text-center">Apellidos</th>
-								<th class="text-center">Nombre</th>
-								<th></th>
+								<th class="text-center">Timestamp</th>
+								<th class="text-center">Severity</th>
+								<th class="text-center">Location</th>
 							</tr>
 				
-							<c:forEach items="${alarmas}" var="alarma">
+							<c:forEach items="${alarms}" var="alarm">
 								<tr>
-									<td><c:out value="${alarma.tipo}" /></td>
-									<td><c:out value="${alarma.apellidos}" /></td>
-									<td><c:out value="${alarma.nombre}" /></td>
-									<td><button type="button" class="btn btn-success btn-xs"><a href="<c:url value="/atender?id=${alarma.id}" />">Atender</a></button></td>
+									<td><c:out value="${alarm.originator}" /></td>
+									<td><c:out value="${alarm.timestamp}" /></td>
+									<td><c:out value="${alarm.severity}" /></td>
+									<td><c:out value="${alarm.location}" /></td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -77,24 +77,13 @@
 		
 				<div class="row">
 					<div class="col-lg-12 text-center">
-						<h3>Añadir una nueva alarma</h3>
+						<h3>Añadir una nueva alarma DUMMY</h3>
 						<br>
 
 						<form action="/new" method="post" accept-charset="utf-8">
 							<table class="table">
-								<tr>
-									<td><label for="tipo">Tipo</label></td>
-									<td><input type="text" name="tipo" id="tipo" size="65" /></td>
-								</tr>
-								<tr>
-									<td><label for="apellidos">Apellidos</label></td>
-									<td><input type="text" name="apellidos" id="apellidos" size="65" /></td>
-								</tr>
-									<td><label for="nombre">Nombre</label></td>
-									<td><input type="text" name="nombre" id="nombre" size="65" /></td>
-								</tr>
 								<tr>						
-									<td><input type="submit" value="Crear" /></td>
+									<td><input type="submit" value="Crear DUMMY" /></td>
 								</tr>
 							</table>
 						</form>

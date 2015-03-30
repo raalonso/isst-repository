@@ -14,9 +14,9 @@ import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
-import es.isst.ca.dao.CaDAO;
-import es.isst.ca.dao.CaDAOImpl;
-import es.isst.ca.model.Alarma;
+import es.isst.ca.dao.AlarmDAO;
+import es.isst.ca.dao.AlarmDAOImpl;
+import es.isst.ca.model.Alarm;
 
 public class MainServlet extends HttpServlet {
 
@@ -25,24 +25,24 @@ public class MainServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 				throws IOException {
 
-		CaDAO dao = CaDAOImpl.getInstance();
+		AlarmDAO alarmdao = AlarmDAOImpl.getInstance();
 
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 
 		String url = userService.createLoginURL(req.getRequestURI());
 		String urlLinktext = "Login";
-		List<Alarma> alarmas = new ArrayList<Alarma>();
+		List<Alarm> alarms = new ArrayList<Alarm>();
 
 		if (user != null){
 			url = userService.createLogoutURL(req.getRequestURI());
 			urlLinktext = "Logout";
 			
-			alarmas = dao.getAlarmas(user.getNickname());
+			alarms = alarmdao.listAlarms();
 		}
 		
 		req.getSession().setAttribute("user", user);
-		req.getSession().setAttribute("alarmas", new ArrayList<Alarma>(alarmas));
+		req.getSession().setAttribute("alarms", new ArrayList<Alarm>(alarms));
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
 		

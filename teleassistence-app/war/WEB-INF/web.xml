@@ -13,11 +13,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/main</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>CreateAlarma</servlet-name>
-		<servlet-class>es.isst.ca.CreateAlarmaServlet</servlet-class>
+		<servlet-name>CreateAlarm</servlet-name>
+		<servlet-class>es.isst.ca.CreateAlarmServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>CreateAlarma</servlet-name>
+		<servlet-name>CreateAlarm</servlet-name>
 		<url-pattern>/new</url-pattern>
 	</servlet-mapping>
 	<servlet>
