@@ -22,6 +22,7 @@ public class Event implements Serializable {
 	private Long timestamp;
 	private Integer type;
 	private List<Number> data;
+	private String units;
 	
 	public Event(String name, String originator, Long timestamp, Integer type, List<Number> data) {
 		super();
