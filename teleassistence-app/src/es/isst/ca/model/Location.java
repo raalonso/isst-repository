@@ -9,35 +9,35 @@ public class Location extends Event {
 	public static final String EVENT_NAME = "User location";
 	public static final Integer EVENT_TYPE = 102;
 	
-	private Long latitude;
-	private Long longitude;
+	private Double latitude;
+	private Double longitude;
 	
-	public static Event create(String originator, Long timestamp, Long latitude,
-			Long longitude) {
-		Event location = new Event(Location.EVENT_NAME, originator, timestamp, Location.EVENT_TYPE, Arrays.asList((Number) new Long(latitude), (Number) new Long(longitude)));
+	public static Event create(String originator, Long timestamp, Double latitude,
+			Double longitude) {
+		Event location = new Event(Location.EVENT_NAME, originator, timestamp, Location.EVENT_TYPE, Arrays.asList((Number) latitude, (Number) longitude));
 		return location;
 	}
 	
 	public Location(String originator, Long timestamp,
-			Long latitude, Long longitude) {
-		super(Location.EVENT_NAME, originator, timestamp, Location.EVENT_TYPE, Arrays.asList((Number) new Long(latitude), (Number) new Long(longitude)));
+			Double latitude, Double longitude) {
+		super(Location.EVENT_NAME, originator, timestamp, Location.EVENT_TYPE, Arrays.asList((Number) latitude, (Number) longitude));
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
 
-	public Long getLatitude() {
-		return latitude;
+	public Double getLatitude() {
+		return (Double) this.getData().get(0);
 	}
 
-	public void setLatitude(Long latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
-	public Long getLongitude() {
-		return longitude;
+	public Double getLongitude() {
+		return (Double) this.getData().get(1);
 	}
 
-	public void setLongitude(Long longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 	

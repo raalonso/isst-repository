@@ -24,8 +24,8 @@ public class EventDAOImpl implements EventDAO {
 	}
 
 	@Override
-	public void addLocation(String originator, Long timestamp, Long latitude,
-			Long longitude) {
+	public void addLocation(String originator, Long timestamp, Double latitude,
+			Double longitude) {
 		synchronized (this) {
 			EntityManager em = EMFService.get().createEntityManager();
 			Event location = Location.create(originator, timestamp, latitude, longitude);
@@ -50,16 +50,20 @@ public class EventDAOImpl implements EventDAO {
 	public List<Event> listEvents(String originator) {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em
-				.createQuery("select t from Location t where t.originator = :originator");
-		q.setParameter("userId", originator);
+				.createQuery("select t from Event t where t.originator = :originator");
+		q.setParameter("originator", originator);
 		List<Event> events = q.getResultList();
 		return events;
 	}
 
 	@Override
 	public List<Location> listUserLocations(String originator) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em
+				.createQuery("select t from Event t where t.type = 102 and t.originator = :originator");
+		q.setParameter("originator", originator);
+		List<Location> events = q.getResultList();
+		return events;
 	}
 
 	@Override
