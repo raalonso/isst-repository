@@ -36,7 +36,6 @@ public class AlarmDAOImpl implements AlarmDAO {
 	@Override
 	public List<Alarm> listAlarms() {
 		EntityManager em = EMFService.get().createEntityManager();
-		// read the existing entries
 		Query q = em.createQuery("select t from Alarm t");
 		List<Alarm> alarms = q.getResultList();
 		return alarms;
@@ -46,8 +45,7 @@ public class AlarmDAOImpl implements AlarmDAO {
 	public List<Alarm> listAlarms(String originator) {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em
-				.createQuery("select t from Alarm t");
-				//.createQuery("select t from Alarm t where t.originator = :originator");
+				.createQuery("select t from Alarm t where t.originator = :originator");
 		q.setParameter("originator", originator);
 		List<Alarm> alarms = q.getResultList();
 		return alarms;
@@ -57,7 +55,7 @@ public class AlarmDAOImpl implements AlarmDAO {
 	public List<Alarm> listAttendedAlarms(String originator) {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em
-				.createQuery("select t from Alarm t where t.originator = :originator");
+				.createQuery("select t from Alarm t where t.originator = :originator and t.attended = true");
 		q.setParameter("originator", originator);
 		List<Alarm> alarms = q.getResultList();
 		return alarms;
@@ -66,14 +64,23 @@ public class AlarmDAOImpl implements AlarmDAO {
 
 	@Override
 	public List<Alarm> listUnattendedAlarms(String originator) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em
+				.createQuery("select t from Alarm t where t.originator = :originator and t.attended = false");
+		q.setParameter("originator", originator);
+		List<Alarm> alarms = q.getResultList();
+		return alarms;
 	}
 
 	@Override
 	public void clearAlarm(Long id) {
-		// TODO Auto-generated method stub
-		
+		synchronized (this) {
+			EntityManager em = EMFService.get().createEntityManager();
+			Alarm alarm = em.find(Alarm.class, id);
+			alarm.setAttended(true);
+			em.merge(alarm);
+			em.close();
+		}
 	}
 
 }

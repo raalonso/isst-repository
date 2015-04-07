@@ -17,12 +17,12 @@ public class Event implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String name;
-	private String originator;
-	private Long timestamp;
-	private Integer type;
-	private List<Number> data;
-	private String units;
+	protected String name;
+	protected String originator;
+	protected Long timestamp;
+	protected Integer type;
+	protected List<Number> data;
+	protected String units;
 	
 	public Event(String name, String originator, Long timestamp, Integer type, List<Number> data) {
 		super();

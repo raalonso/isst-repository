@@ -16,6 +16,7 @@ import es.isst.ca.dao.AlarmDAO;
 import es.isst.ca.dao.AlarmDAOImpl;
 import es.isst.ca.dao.EventDAO;
 import es.isst.ca.dao.EventDAOImpl;
+import es.isst.ca.model.Alarm;
 import es.isst.ca.model.Event;
 import es.isst.ca.model.Location;
 
@@ -30,19 +31,31 @@ public class CreateAlarmServlet extends HttpServlet {
 		long timestamp = System.currentTimeMillis() / 1000L;
 		
 		AlarmDAO alarm_dao = AlarmDAOImpl.getInstance();
-		alarm_dao.addDistressAlarm("IMSI0123456789", new Long(timestamp), new Integer(1), Arrays.asList((Number) new Long(10), (Number) new Long(20)));
+		
+		//Location location = new Location("IMSI0123456789", timestamp,  40.416944, -3.703611);
+		//alarm_dao.addDistressAlarm("IMSI0123456789", timestamp, 1, location.getData());
         
-
-		EventDAO dao2 = EventDAOImpl.getInstance();
-        
-        dao2.addLocation("IMSI1234567890", timestamp, 40.416944, -3.703611);
-        dao2.addAcceleration("IMSI1234567890", timestamp, 10.0, 12.0, 20.0);
-        
-        List<Event> events = dao2.listEvents("IMSI1234567890");
-        System.out.println("Events " + events);
-        
-        List<Location> events = dao2.listUserLocations("IMSI1234567890");
-        System.out.println("Events " + events);
+		alarm_dao.clearAlarm(4996180836614144L);
+		
+		List<Alarm> alarms = alarm_dao.listAlarms();
+		System.out.println("Alarms " + alarms);
+		List<Alarm> originator_alarms = alarm_dao.listAlarms("IMSI0123456789");
+		System.out.println("Alarms for originator " + originator_alarms);
+		List<Alarm> unattended_originator_alarms = alarm_dao.listUnattendedAlarms("IMSI0123456789");
+		System.out.println("Unattended Alarms for originator " + unattended_originator_alarms);
+		List<Alarm> attended_originator_alarms = alarm_dao.listAttendedAlarms("IMSI0123456789");
+		System.out.println("Attended Alarms for originator " + attended_originator_alarms);
+		
+//		EventDAO dao2 = EventDAOImpl.getInstance();
+//        
+//        dao2.addLocation("IMSI1234567890", timestamp, 40.416944, -3.703611);
+//        dao2.addAcceleration("IMSI1234567890", timestamp, 10.0, 12.0, 20.0);
+//        
+//        List<Event> events = dao2.listEvents("IMSI1234567890");
+//        System.out.println("Events " + events);
+//        
+//        List<Location> locations = dao2.listUserLocations("IMSI1234567890");
+//        System.out.println("Events " + locations);
 		
 		resp.sendRedirect("/");
 	}

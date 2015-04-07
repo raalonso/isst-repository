@@ -1,6 +1,7 @@
 package es.isst.ca.model;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Location extends Event {
 
@@ -23,8 +24,13 @@ public class Location extends Event {
 		super(Location.EVENT_NAME, originator, timestamp, Location.EVENT_TYPE, Arrays.asList((Number) latitude, (Number) longitude));
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.data = Arrays.asList((Number) this.latitude, (Number) this.longitude);
 	}
-
+	
+	public List<Number> asList() {
+		return Arrays.asList((Number) this.latitude, (Number) this.longitude);
+	}
+	
 	public Double getLatitude() {
 		return (Double) this.getData().get(0);
 	}
