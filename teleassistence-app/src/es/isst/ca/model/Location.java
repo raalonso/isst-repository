@@ -15,13 +15,13 @@ public class Location extends Event {
 	
 	public static Event create(String originator, Long timestamp, Double latitude,
 			Double longitude) {
-		Event location = new Event(Location.EVENT_NAME, originator, timestamp, Location.EVENT_TYPE, Arrays.asList((Number) latitude, (Number) longitude));
+		Event location = new Event(Location.EVENT_NAME, originator, timestamp, Location.EVENT_TYPE, Arrays.asList((Number) latitude, (Number) longitude), "");
 		return location;
 	}
 	
 	public Location(String originator, Long timestamp,
 			Double latitude, Double longitude) {
-		super(Location.EVENT_NAME, originator, timestamp, Location.EVENT_TYPE, Arrays.asList((Number) latitude, (Number) longitude));
+		super(Location.EVENT_NAME, originator, timestamp, Location.EVENT_TYPE, Arrays.asList((Number) latitude, (Number) longitude), "");
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.data = Arrays.asList((Number) this.latitude, (Number) this.longitude);

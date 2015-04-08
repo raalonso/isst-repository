@@ -24,13 +24,14 @@ public class Event implements Serializable {
 	protected List<Number> data;
 	protected String units;
 	
-	public Event(String name, String originator, Long timestamp, Integer type, List<Number> data) {
+	public Event(String name, String originator, Long timestamp, Integer type, List<Number> data, String units) {
 		super();
 		this.name = name;
 		this.originator = originator;
 		this.timestamp = timestamp;
 		this.type = type;
 		this.data = data;
+		this.units = "";
 	}
 	
 	public String getName() {
@@ -71,6 +72,14 @@ public class Event implements Serializable {
 
 	public void setData(List<Number> data) {
 		this.data = data;
+	}
+
+	public String getUnits() {
+		return units;
+	}
+
+	public void setUnits(String units) {
+		this.units = units;
 	}
 
 }

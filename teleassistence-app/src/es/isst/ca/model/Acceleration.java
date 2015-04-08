@@ -15,13 +15,13 @@ public class Acceleration extends Event {
 	
 	public static Event create(String originator, Long timestamp,
 			Double acceleration_x_axis, Double acceleration_y_axis,	Double acceleration_z_axis) {
-		Event acceleration = new Event(Acceleration.EVENT_NAME, originator, timestamp, Acceleration.EVENT_TYPE, Arrays.asList((Number) new Double(acceleration_x_axis), (Number) new Double(acceleration_y_axis), (Number) new Double(acceleration_z_axis)));
+		Event acceleration = new Event(Acceleration.EVENT_NAME, originator, timestamp, Acceleration.EVENT_TYPE, Arrays.asList((Number) new Double(acceleration_x_axis), (Number) new Double(acceleration_y_axis), (Number) new Double(acceleration_z_axis)), "");
 		return acceleration;
 	}
 	
 	public Acceleration(String originator, Long timestamp,
 			Double acceleration_x_axis,	Double acceleration_y_axis, Double acceleration_z_axis) {
-		super(Acceleration.EVENT_NAME, originator, timestamp, Acceleration.EVENT_TYPE, Arrays.asList((Number) new Double(acceleration_x_axis), (Number) new Double(acceleration_y_axis), (Number) new Double(acceleration_z_axis)));
+		super(Acceleration.EVENT_NAME, originator, timestamp, Acceleration.EVENT_TYPE, Arrays.asList((Number) new Double(acceleration_x_axis), (Number) new Double(acceleration_y_axis), (Number) new Double(acceleration_z_axis)), "");
 		this.acceleration_x_axis = acceleration_x_axis;
 		this.acceleration_y_axis = acceleration_y_axis;
 		this.acceleration_z_axis = acceleration_z_axis;
