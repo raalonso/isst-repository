@@ -1,12 +1,16 @@
 package es.isst.ca.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.google.api.server.spi.config.AnnotationBoolean;
+import com.google.api.server.spi.config.ApiResourceProperty;
 
 @Entity
 public class Alarm implements Serializable {
@@ -15,6 +19,7 @@ public class Alarm implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
 	private Long id;
 	
 	private String name;
@@ -22,9 +27,21 @@ public class Alarm implements Serializable {
 	private String originator;
 	private Long timestamp;
 	private Integer severity;
-	private Boolean attended; 
-	private List<Number> location;
 	
+	@ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
+	private Boolean attended;
+	
+	@ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
+	private List<Number> location;
+	@ApiResourceProperty(name = "location", ignored = AnnotationBoolean.FALSE)
+	private UserLocation apiLocation;
+
+	
+	public Alarm() {
+		super();
+		this.attended = Boolean.FALSE;
+	}
+
 	public Alarm(String name, Integer type, String originator, Long timestamp,
 			Integer severity, List<Number> location) {
 		super();
@@ -37,6 +54,10 @@ public class Alarm implements Serializable {
 		this.location = location;
 	}
 	
+	public Long getId() {
+		return id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -88,9 +109,20 @@ public class Alarm implements Serializable {
 	public List<Number> getLocation() {
 		return location;
 	}
-	
+
 	public void setLocation(List<Number> location) {
 		this.location = location;
+	}
+
+	public UserLocation getApiLocation() {
+		return apiLocation;
+	}
+
+	public void setApiLocation(UserLocation apiLocation) {
+		this.apiLocation = apiLocation;
+		Number lat = apiLocation.latitude;
+		Number lon = apiLocation.longitude;
+		this.location = Arrays.asList(lat, lon);
 	}
 	
 }

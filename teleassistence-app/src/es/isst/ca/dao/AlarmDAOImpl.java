@@ -23,6 +23,15 @@ public class AlarmDAOImpl implements AlarmDAO {
 	}
 	
 	@Override
+	public void addAlarm(Alarm alarm) {
+		synchronized (this) {
+			EntityManager em = EMFService.get().createEntityManager();
+			em.persist(alarm);
+			em.close();
+		}
+	}
+
+	@Override
 	public void addDistressAlarm(String originator, Long timestamp,
 			Integer severity, List<Number> location) {
 		synchronized (this) {

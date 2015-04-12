@@ -6,6 +6,7 @@ import es.isst.ca.model.Alarm;
 
 public interface AlarmDAO {
 	
+	public void addAlarm(Alarm alarm);
 	public void addDistressAlarm(String originator, Long timestamp,	Integer severity, List<Number> location);
 
 	public List<Alarm> listAlarms();
