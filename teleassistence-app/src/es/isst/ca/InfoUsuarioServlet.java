@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.isst.ca.dao.CaDAO;
-import es.isst.ca.dao.CaDAOImpl;
+import es.isst.ca.dao.UserDAO;
+import es.isst.ca.dao.UserDAOImpl;
 import es.isst.ca.model.Usuario;
 
 public class InfoUsuarioServlet extends HttpServlet {
@@ -20,9 +20,9 @@ public class InfoUsuarioServlet extends HttpServlet {
 				throws IOException {
 		String id = req.getParameter("id");
 
-		CaDAO dao = CaDAOImpl.getInstance();
+		UserDAO userdao = UserDAOImpl.getInstance();
 			
-		Usuario usuario = dao.getUsuarioById(Long.parseLong(id));
+		Usuario usuario = userdao.getUsuarioById(Long.parseLong(id));
 		
 		req.getSession().setAttribute("usuario", usuario);
 		

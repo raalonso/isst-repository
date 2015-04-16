@@ -1,12 +1,16 @@
 package es.isst.ca.dao;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import es.isst.ca.model.Alarm;
+import es.isst.ca.model.Alarma;
 import es.isst.ca.model.DistressAlarm;
+import es.isst.ca.model.Usuario;
 
 public class AlarmDAOImpl implements AlarmDAO {
 
@@ -70,13 +74,11 @@ public class AlarmDAOImpl implements AlarmDAO {
 		return alarms;
 	}
 	
-
 	@Override
-	public List<Alarm> listUnattendedAlarms(String originator) {
+	public List<Alarm> listUnattendedAlarms() {
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em
-				.createQuery("select t from Alarm t where t.originator = :originator and t.attended = false");
-		q.setParameter("originator", originator);
+		Query q = em.createQuery("select t from Alarm t where t.attended = false");
+		//q.setParameter("originator", originator);
 		List<Alarm> alarms = q.getResultList();
 		return alarms;
 	}
@@ -92,4 +94,22 @@ public class AlarmDAOImpl implements AlarmDAO {
 		}
 	}
 
+	@Override
+	public Alarm getAlarmById(long id) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Alarm alarm = em.find(Alarm.class, id);
+		return alarm;
+	}
+	
+	@Override
+	public void removeAlarm(long id) {
+		EntityManager em = EMFService.get().createEntityManager();
+		try {
+			Alarma alarma = em.find(Alarma.class, id);
+			em.remove(alarma);
+		} finally {
+			em.close();
+		}
+	}
+	
 }

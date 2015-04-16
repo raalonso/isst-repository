@@ -2,6 +2,8 @@ package es.isst.ca;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -32,13 +34,30 @@ public class MainServlet extends HttpServlet {
 
 		String url = userService.createLoginURL(req.getRequestURI());
 		String urlLinktext = "Login";
-		List<Alarm> alarms = new ArrayList<Alarm>();
-
+		List<Alarm> alarms = new ArrayList<Alarm>();		
+				
 		if (user != null){
 			url = userService.createLogoutURL(req.getRequestURI());
 			urlLinktext = "Logout";
 			
-			alarms = alarmdao.listAlarms();
+			alarms = alarmdao.listUnattendedAlarms();
+			Comparator<Alarm> comparador = new Comparator<Alarm>() {
+				public int compare(Alarm a, Alarm b) {
+					int resultado = Integer.compare(a.getSeverity(), b.getSeverity());
+					if (resultado != 0) {
+						return resultado;
+					} 
+
+					resultado = (int) Long.compare(a.getTimestamp(), b.getTimestamp());
+					if (resultado != 0) {
+						return resultado;
+					} else {
+						return -1;
+					}
+				}
+			};
+			
+			Collections.sort(alarms, comparador);
 		}
 		
 		req.getSession().setAttribute("user", user);

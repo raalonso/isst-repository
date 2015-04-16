@@ -12,8 +12,10 @@ public interface AlarmDAO {
 	public List<Alarm> listAlarms();
 	public List<Alarm> listAlarms(String originator);
 	public List<Alarm> listAttendedAlarms(String originator);
-	public List<Alarm> listUnattendedAlarms(String originator);
+	public List<Alarm> listUnattendedAlarms();
 
 	public void clearAlarm(Long id);
+	void removeAlarm(long id);
+	public Alarm getAlarmById(long id);
 	
 }

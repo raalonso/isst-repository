@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.isst.ca.dao.CaDAO;
-import es.isst.ca.dao.CaDAOImpl;
-import es.isst.ca.model.Alarma;
+import es.isst.ca.dao.AlarmDAO;
+import es.isst.ca.dao.AlarmDAOImpl;
+import es.isst.ca.model.Alarm;
 
 public class AtenderAlarmaServlet extends HttpServlet {
 
@@ -19,9 +19,9 @@ public class AtenderAlarmaServlet extends HttpServlet {
 				throws IOException {
 		String id = req.getParameter("id");
 
-		CaDAO dao = CaDAOImpl.getInstance();
+		AlarmDAO alarmdao = AlarmDAOImpl.getInstance();
 			
-		Alarma alarma = dao.getAlarmaById(Long.parseLong(id));
+		Alarm alarma = alarmdao.getAlarmById(Long.parseLong(id));
 		
 		req.getSession().setAttribute("alarma", alarma);
 		

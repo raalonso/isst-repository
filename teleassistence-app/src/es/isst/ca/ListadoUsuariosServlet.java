@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.isst.ca.dao.CaDAO;
-import es.isst.ca.dao.CaDAOImpl;
+import es.isst.ca.dao.UserDAO;
+import es.isst.ca.dao.UserDAOImpl;
 import es.isst.ca.model.Usuario;
 
 public class ListadoUsuariosServlet extends HttpServlet {
@@ -21,11 +21,11 @@ public class ListadoUsuariosServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 				throws IOException {
 
-		CaDAO dao = CaDAOImpl.getInstance();
+		UserDAO userdao = UserDAOImpl.getInstance();
 
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		
-		usuarios = dao.listUsuarios();
+		usuarios = userdao.listUsuarios();
 		
 		req.getSession().setAttribute("usuarios", new ArrayList<Usuario>(usuarios));
 		

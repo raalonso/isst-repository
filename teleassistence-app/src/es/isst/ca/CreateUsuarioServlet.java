@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.isst.ca.dao.CaDAO;
-import es.isst.ca.dao.CaDAOImpl;
+import es.isst.ca.dao.UserDAO;
+import es.isst.ca.dao.UserDAOImpl;
 
 public class CreateUsuarioServlet extends HttpServlet {
 	
@@ -31,8 +31,8 @@ public class CreateUsuarioServlet extends HttpServlet {
 		String provincia = checkNull(req.getParameter("provincia"));
 		String datos = checkNull(req.getParameter("datos"));
 
-		CaDAO dao = CaDAOImpl.getInstance();
-		dao.addUsuario(apellido1 + " " + apellido2, nombre, nacimiento, dni, sexo, telefono,
+		UserDAO userdao = UserDAOImpl.getInstance();
+		userdao.addUsuario(apellido1 + " " + apellido2, nombre, nacimiento, dni, sexo, telefono,
 				movil, domicilio, cp, localidad, provincia, datos);
         
 		resp.sendRedirect("/");
