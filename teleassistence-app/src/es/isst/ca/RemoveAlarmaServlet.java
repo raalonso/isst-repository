@@ -15,7 +15,7 @@ public class RemoveAlarmaServlet extends HttpServlet {
 			throws IOException {
 		String id = req.getParameter("id");
 		AlarmDAO alarmdao = AlarmDAOImpl.getInstance();
-		alarmdao.removeAlarm(Long.parseLong(id));
+		alarmdao.clearAlarm(Long.parseLong(id));
 		resp.sendRedirect("/");
 	}
 }

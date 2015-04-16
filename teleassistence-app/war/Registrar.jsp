@@ -134,6 +134,10 @@
 						<label for="cp">Código Postal</label>
 						<input type="number" class="form-control" name="cp">
 					</div>
+					<div class="form-group">
+						<label for="IMEI">IMEI</label>
+						<input type="text" class="form-control" name="IMEI">
+					</div>
 				</div>
 				<div class="col-lg-4 text-center">
 					<div class="form-group">

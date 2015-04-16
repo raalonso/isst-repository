@@ -50,7 +50,7 @@
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<br>
-				<h2>Alarma <strong>${alarma.tipo}</strong></h2>
+				<h2><strong>${alarm.name}</strong></h2>
 				<br>
 				<h3><i class="fa fa-user"></i> Datos personales y de contacto</h3>
 				<br>
@@ -62,7 +62,7 @@
 					</tr>
 					<tr class="danger">
 						<td><strong>PACIENTE</strong></td>
-						<td><strong>${alarma.apellidos}, ${alarma.nombre}</strong></td>
+						<td><strong>${alarm.originator}</strong></td>
 						<td><strong><font color="green">612 345 678</strong</font></td>
 					</tr>
 					<tr>
@@ -128,7 +128,7 @@
 				<script>
 			        function initialize() {
 						var mapProp = {
-							center : new google.maps.LatLng(40.415363, -3.707398),
+							center : new google.maps.LatLng(${alarm.location[0]}, ${alarm.location[1]}),
 							zoom : 14,
 							mapTypeId : google.maps.MapTypeId.ROADMAP
 						};
@@ -157,7 +157,7 @@
 				<br>
 				<div>
 					<button class="btn btn-success btn-lg">
-						<a href="<c:url value="/done?id=${alarma.id}"/>">FINALIZAR ALARMA</a>
+						<a href="<c:url value="/done?id=${alarm.id}"/>">FINALIZAR ALARMA</a>
 					</button>
 				</div>
 			</div>

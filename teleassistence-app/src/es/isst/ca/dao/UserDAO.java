@@ -9,7 +9,7 @@ public interface UserDAO {
 	public List<Usuario> listUsuarios();
 	public void addUsuario (String apellidos, String nombre, String nacimiento, 
 			String dni, String sexo, String telefono, String movil, String domicilio, String cp,
-			String localidad, String provincia, String datos);
+			String localidad, String provincia, String datos, String IMEI);
 	public Usuario getUsuarioById (long id);
 	public void removeUsuario (long id);
 }

@@ -26,10 +26,11 @@ public class Usuario implements Serializable {
 	private String localidad;
 	private String provincia;
 	private String datos;
+	private String IMEI;
 	boolean finished;
 	public Usuario(String apellidos, String nombre, String nacimiento, 
 			String dni, String sexo, String telefono, String movil, String domicilio, String cp,
-			String localidad, String provincia, String datos) {
+			String localidad, String provincia, String datos, String IMEI) {
 		this.apellidos = apellidos;
 		this.nombre = nombre;
 		this.nacimiento = nacimiento;
@@ -42,6 +43,7 @@ public class Usuario implements Serializable {
 		this.localidad = localidad;
 		this.provincia = provincia;
 		this.datos = datos;
+		this.IMEI = IMEI;
 		finished = false;
 	}
 	public Long getId() {
@@ -118,6 +120,12 @@ public class Usuario implements Serializable {
 	}
 	public void setDatos(String datos) {
 		this.datos = datos;
+	}
+	public String getIMEI() {
+		return IMEI;
+	}
+	public void setIMEI(String IMEI) {
+		this.IMEI = IMEI;
 	}
 	public boolean isFinished() {
 		return finished;

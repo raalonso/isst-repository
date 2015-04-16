@@ -21,9 +21,9 @@ public class AtenderAlarmaServlet extends HttpServlet {
 
 		AlarmDAO alarmdao = AlarmDAOImpl.getInstance();
 			
-		Alarm alarma = alarmdao.getAlarmById(Long.parseLong(id));
+		Alarm alarm = alarmdao.getAlarmById(Long.parseLong(id));
 		
-		req.getSession().setAttribute("alarma", alarma);
+		req.getSession().setAttribute("alarm", alarm);
 		
 		RequestDispatcher view = req.getRequestDispatcher("Atender.jsp");
 		try {
