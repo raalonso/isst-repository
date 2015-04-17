@@ -78,6 +78,24 @@
 					<li>C.P: <c:out value="${usuario.cp}"/></li>
 				</ul>
 				<c:out value="${usuario.datos}" />
+				<br>
+				<h5><strong>Lista de Alarmas Atendidas</strong></h5>
+				<table class="table table-striped table-condensed table-bordered">
+					<tr>
+						<th class="text-center">Nombre</th>
+						<th class="text-center">Tipo</th>
+						<th class="text-center">Severidad</th>
+						<th class="text-center">Sello de tiempo</th>
+					</tr>
+					<c:forEach items="${alarms}" var="alarm">
+						<tr>
+							<td><c:out value="${alarm.name}" /></td>
+							<td><c:out value="${alarm.type}" /></td>
+							<td><c:out value="${alarm.severity}" /></td>
+							<td><c:out value="${alarm.timestamp}" /></td>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
 			<div class="col-lg-6 text-center">
 				<h5><strong>Comentarios</strong></h5><br>
