@@ -60,6 +60,7 @@
 								<th class="text-center">Timestamp</th>
 								<th class="text-center">Severity</th>
 								<th class="text-center">Location</th>
+								<th class="text-center"> </th>
 							</tr>
 				
 							<c:forEach items="${alarms}" var="alarm">

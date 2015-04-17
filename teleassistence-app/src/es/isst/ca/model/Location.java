@@ -47,4 +47,12 @@ public class Location extends Event {
 		this.longitude = longitude;
 	}
 	
+	public Long getTimestamp() {
+		return (Long) this.timestamp;
+	}
+
+	public void setTimestamp(Long timestamp) {
+		this.timestamp = timestamp;
+	}
+	
 }

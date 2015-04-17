@@ -12,8 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.isst.ca.dao.EventDAO;
+import es.isst.ca.dao.EventDAOImpl;
 import es.isst.ca.dao.UserDAO;
 import es.isst.ca.dao.UserDAOImpl;
+import es.isst.ca.model.Event;
+import es.isst.ca.model.Location;
 import es.isst.ca.model.Usuario;
 import es.isst.ca.dao.AlarmDAO;
 import es.isst.ca.dao.AlarmDAOImpl;
@@ -29,9 +33,11 @@ public class InfoUsuarioServlet extends HttpServlet {
 
 		UserDAO userdao = UserDAOImpl.getInstance();
 		AlarmDAO alarmdao = AlarmDAOImpl.getInstance();
+		EventDAO eventdao = EventDAOImpl.getInstance();
 			
 		Usuario usuario = userdao.getUsuarioById(Long.parseLong(id));
 		List<Alarm> alarms = new ArrayList<Alarm>();
+		Double[] latlon = eventdao.getUserLocation(usuario.getIMEI());
 		
 		alarms = alarmdao.listAttendedAlarms(usuario.getIMEI());
 		Comparator<Alarm> comparador = new Comparator<Alarm>() {
@@ -49,7 +55,7 @@ public class InfoUsuarioServlet extends HttpServlet {
 		
 		req.getSession().setAttribute("alarms", new ArrayList<Alarm>(alarms));
 		req.getSession().setAttribute("usuario", usuario);
-		
+		req.getSession().setAttribute("latlon", latlon);
 		RequestDispatcher view = req.getRequestDispatcher("Info.jsp");
 		try {
 			view.forward(req, resp);
