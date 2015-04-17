@@ -62,8 +62,8 @@
 					</tr>
 					<tr class="danger">
 						<td><strong>PACIENTE</strong></td>
-						<td><strong>${alarm.originator}</strong></td>
-						<td><strong><font color="green">612 345 678</strong</font></td>
+						<td><strong>${usuario.apellidos}, ${usuario.nombre}</strong></td>
+						<td><strong><font color="green">${usuario.movil}</strong</font></td>
 					</tr>
 					<tr>
 						<td><strong>Pariente 1</strong></td>

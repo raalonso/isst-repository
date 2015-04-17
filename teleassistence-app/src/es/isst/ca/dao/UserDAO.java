@@ -12,4 +12,5 @@ public interface UserDAO {
 			String localidad, String provincia, String datos, String IMEI);
 	public Usuario getUsuarioById (long id);
 	public void removeUsuario (long id);
+	public Usuario getUsuarioByIMEI(String IMEI);
 }

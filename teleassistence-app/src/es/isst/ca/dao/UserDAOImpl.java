@@ -70,5 +70,14 @@ public class UserDAOImpl implements UserDAO {
 		}
 
 	}
+	@Override
+	public Usuario getUsuarioByIMEI(String IMEI) {
+		EntityManager em = EMFService.get().createEntityManager();
+		// read the existing entries
+		Query q = em.createQuery("select m from Usuario m where m.IMEI = :IMEI");
+		q.setParameter("IMEI", IMEI);
+		Usuario usuario = (Usuario) q.getSingleResult();
+		return usuario;
+	}
 
 }
