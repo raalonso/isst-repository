@@ -67,9 +67,29 @@ public class EventDAOImpl implements EventDAO {
 	}
 
 	@Override
-	public Location getUserLocation(String originator) {
-		// TODO Auto-generated method stub
-		return null;
+	public Double[] getUserLocation(String originator) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em
+				.createQuery("select t from Event t where t.type = 102 and t.originator = :originator");
+		q.setParameter("originator", originator);
+		List<Event> events = q.getResultList();
+		
+		Double[] latlon = { (double) 0, (double) 0 };
+		
+		if (events.size() != 0) {
+			Event event = events.get(0);
+
+			for (int i = 0; i < events.size(); i++) {
+				if (event.getTimestamp() < events.get(i).getTimestamp()) {
+					latlon[0] = (Double) events.get(i).getData().get(0);
+					latlon[1] = (Double) events.get(i).getData().get(1);
+				}
+			}
+		} else {
+			latlon[0] = 40.416944;
+			latlon[1] = -3.703611;
+		}
+		return latlon;
 	}
 	
 
