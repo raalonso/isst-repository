@@ -117,7 +117,7 @@ public class Alarm implements Serializable {
 	public UserLocation getApiLocation() {
 		return apiLocation;
 	}
-
+	
 	public void setApiLocation(UserLocation apiLocation) {
 		this.apiLocation = apiLocation;
 		Number lat = apiLocation.latitude;

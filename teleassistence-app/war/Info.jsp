@@ -84,14 +84,14 @@
 				<script>
 			        function initialize() {
 						var mapProp = {
-							center : new google.maps.LatLng(${latlon[0]}, ${latlon[1]}),
+							center : new google.maps.LatLng(${latlon.latitude}, ${latlon.longitude}),
 							zoom :16,
 							mapTypeId : google.maps.MapTypeId.ROADMAP
 						};
 						var map = new google.maps.Map(document.getElementById("googleMap"),
 								mapProp);
 						var marker = new google.maps.Marker({
-						      position: new google.maps.LatLng(${latlon[0]}, ${latlon[1]}),
+						      position: new google.maps.LatLng(${latlon.latitude}, ${latlon.longitude}),
 						      map: map,
 						      title: 'Aquí!'
 						});

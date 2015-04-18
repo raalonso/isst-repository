@@ -54,5 +54,4 @@ public class Location extends Event {
 	public void setTimestamp(Long timestamp) {
 		this.timestamp = timestamp;
 	}
-	
 }

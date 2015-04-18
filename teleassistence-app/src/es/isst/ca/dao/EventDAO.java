@@ -13,7 +13,7 @@ public interface EventDAO {
 	public List<Event> listEvents(String originator);
 	
 	public List<Location> listUserLocations(String originator);
-	public Double[] getUserLocation(String originator);
+	public Location getUserLocation(String originator);
 	
 	
 }

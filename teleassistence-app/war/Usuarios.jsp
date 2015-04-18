@@ -62,8 +62,8 @@
 		
 					<c:forEach items="${usuarios}" var="usuario">
 						<tr>
-							<td><c:out value="${usuario.id}"/></td>
-							<td><c:out value="${usuario.apellidos}, ${usuario.nombre}" /></td>
+							<td class="${usuario.conectado}"><c:out value="${usuario.id}"/></td>
+							<td class="${usuario.conectado}"><c:out value="${usuario.apellidos}, ${usuario.nombre}" /></td>
 							<td><button type="button" class="btn btn-xs"><a href="<c:url value="/info?id=${usuario.id}"/>">Info</a></button></td>
 							<td><button type="button" class="btn btn-xs"><a href="<c:url value="/editar?id=${usuario.id}"/>">Editar</a></button></td>
 							<td><button type="button" class="btn btn-xs"><a href="<c:url value="/borrar?id=${usuario.id}"/>">Borrar</a></button></td>

@@ -63,7 +63,7 @@
 					<tr class="danger">
 						<td><strong>PACIENTE</strong></td>
 						<td><strong>${usuario.apellidos}, ${usuario.nombre}</strong></td>
-						<td><strong><font color="green">${usuario.movil}</strong</font></td>
+						<td><strong><font color="green">${usuario.movil}</strong></font></td>
 					</tr>
 					<tr>
 						<td><strong>Pariente 1</strong></td>

@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import es.isst.ca.dao.EventDAO;
+import es.isst.ca.dao.EventDAOImpl;
+
 @Entity
 public class Usuario implements Serializable {
 
@@ -28,6 +31,7 @@ public class Usuario implements Serializable {
 	private String datos;
 	private String IMEI;
 	boolean finished;
+	String conectado;
 	public Usuario(String apellidos, String nombre, String nacimiento, 
 			String dni, String sexo, String telefono, String movil, String domicilio, String cp,
 			String localidad, String provincia, String datos, String IMEI) {
@@ -45,6 +49,8 @@ public class Usuario implements Serializable {
 		this.datos = datos;
 		this.IMEI = IMEI;
 		finished = false;
+		conectado = "danger";
+		
 	}
 	public Long getId() {
 		return id;
@@ -132,5 +138,11 @@ public class Usuario implements Serializable {
 	}
 	public void setFinished(boolean finished) {
 		this.finished = finished;
+	}
+	public String getConectado() {
+		return conectado;
+	}
+	public void setConectado(String conectado) {
+		this.conectado = conectado;
 	}
 }
