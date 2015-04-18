@@ -39,6 +39,8 @@ public class InfoUsuarioServlet extends HttpServlet {
 		List<Alarm> alarms = new ArrayList<Alarm>();
 		Location latlon = eventdao.getUserLocation(usuario.getIMEI());
 		
+		//System.out.println(latlon.getLatitude()+", "+latlon.getLongitude());
+		
 		alarms = alarmdao.listAttendedAlarms(usuario.getIMEI());
 		Comparator<Alarm> comparador = new Comparator<Alarm>() {
 			public int compare(Alarm a, Alarm b) {

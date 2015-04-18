@@ -125,23 +125,30 @@
 			<br>
 				<h3><i class="fa fa-map-marker"></i> Localización</h3>
 				<script src="http://maps.googleapis.com/maps/api/js"></script>
-				<script>
-			        function initialize() {
-						var mapProp = {
-							center : new google.maps.LatLng(${alarm.location[0]}, ${alarm.location[1]}),
-							zoom : 16,
-							mapTypeId : google.maps.MapTypeId.ROADMAP
-						};
-						var map = new google.maps.Map(document.getElementById("googleMap"),
-								mapProp);
-						var marker = new google.maps.Marker({
-						      position: new google.maps.LatLng(${alarm.location[0]}, ${alarm.location[1]}),
-						      map: map,
-						      title: 'Aquí!'
-						  });
-					}
-					google.maps.event.addDomListener(window, 'load', initialize);
-				</script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	function initialize() {
+		var mapProp = {
+			center : new google.maps.LatLng(${alarm.location[0]}, ${alarm.location[1]}),
+			zoom :16,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
+		};
+		var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(${alarm.location[0]}, ${alarm.location[1]}),
+			map: map
+		});
+		var latlng = ""+${alarm.location[0]}+", "+${alarm.location[1]}+"";
+		var url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latlng + "&sensor=false";
+		var infowindow = new google.maps.InfoWindow();
+		$.getJSON(url, function (data) {
+			infowindow.setContent(data.results[0].formatted_address.toString());
+			//alert(adress);
+		});
+		infowindow.open(map, marker);
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 				<div id="googleMap" style="width:500px;height:380px;border-style:solid;border-width:1px;"></div>
 			</div>
 			<div class ="col-lg-6 text-center">

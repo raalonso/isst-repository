@@ -83,9 +83,9 @@ public class EventDAOImpl implements EventDAO {
 			
 			for (int i = 0; i < events.size(); i++) {
 				if (location.getTimestamp() < events.get(i).getTimestamp()) {
-					location.setTimestamp(events.get(i).getTimestamp());
-					location.setLatitude((double) events.get(i).getData().get(0));
-					location.setLongitude((double) events.get(i).getData().get(1));
+					location = new Location(originator, events.get(i).getTimestamp(),
+							(double) events.get(i).getData().get(0), 
+							(double) events.get(i).getData().get(1));
 				}
 			}
 		} else {

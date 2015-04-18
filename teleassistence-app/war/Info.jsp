@@ -81,23 +81,30 @@
 				
 				<h5><i class="fa fa-map-marker"></i><strong>Localización</strong></h5>
 				<script src="http://maps.googleapis.com/maps/api/js"></script>
-				<script>
-			        function initialize() {
-						var mapProp = {
-							center : new google.maps.LatLng(${latlon.latitude}, ${latlon.longitude}),
-							zoom :16,
-							mapTypeId : google.maps.MapTypeId.ROADMAP
-						};
-						var map = new google.maps.Map(document.getElementById("googleMap"),
-								mapProp);
-						var marker = new google.maps.Marker({
-						      position: new google.maps.LatLng(${latlon.latitude}, ${latlon.longitude}),
-						      map: map,
-						      title: 'Aquí!'
-						});
-					}
-					google.maps.event.addDomListener(window, 'load', initialize);
-				</script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	function initialize() {
+		var mapProp = {
+			center : new google.maps.LatLng(${latlon.latitude}, ${latlon.longitude}),
+			zoom :16,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
+		};
+		var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(${latlon.latitude}, ${latlon.longitude}),
+			map: map
+		});
+		var latlng = ""+${latlon.latitude}+", "+${latlon.longitude}+"";
+		var url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latlng + "&sensor=false";
+		var infowindow = new google.maps.InfoWindow();
+		$.getJSON(url, function (data) {
+			infowindow.setContent(data.results[0].formatted_address.toString());
+			//alert(adress);
+		});
+		infowindow.open(map, marker);
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 				<div id="googleMap" style="width:540px;height:380px;border-style:solid;border-width:1px;"></div>
 				<br>
 				

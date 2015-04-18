@@ -47,8 +47,8 @@ public class CreateAlarmServlet extends HttpServlet {
 		
 		EventDAO dao2 = EventDAOImpl.getInstance();
         
-        dao2.addLocation("IMSI0123456711", timestamp, 41.416944, -3.703611);
-        dao2.addAcceleration("IMSI023456711", timestamp, 10.0, 12.0, 20.0);
+        dao2.addLocation("IMSI0123456711", timestamp, 40.714224, -3.961452);
+        //dao2.addAcceleration("IMSI023456711", timestamp, 10.0, 12.0, 20.0);
         
         List<Event> events = dao2.listEvents("IMSI0123456711");
         System.out.println("Events " + events);
