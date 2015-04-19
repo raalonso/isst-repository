@@ -66,24 +66,9 @@
 						<td><strong><font color="green">${usuario.movil}</strong></font></td>
 					</tr>
 					<tr>
-						<td><strong>Pariente 1</strong></td>
-						<td>Apellidos, Nombre</td>
-						<td>612 345 678</td>
-					</tr>
-					<tr>
-						<td><strong>Pariente 2</strong></td>
-						<td>Apellidos, Nombre</td>
-						<td>612 345 678</td>
-					</tr>					
-					<tr>
-						<td><strong>Vecino 1</strong></td>
-						<td>Apellidos, Nombre</td>
-						<td>612 345 678</td>
-					</tr>
-					<tr>
-						<td><strong>Vecino 2</strong></td>
-						<td>Apellidos, Nombre</td>
-						<td>612 345 678</td>
+						<td><strong>${usuario.persona}</strong></td>
+						<td>${usuario.papellidos}, ${usuario.pnombre}</td>
+						<td>${usuario.pmovil}</td>
 					</tr>											
 				</table>
 			</div>
@@ -163,7 +148,7 @@
 				</div>
 				<br>
 				<div>
-					<h5>Historial Clínico... Alergias...</h5>
+					<h5>${usuario.datos}</h5>
 				</div>
 				<br>
 				<br>

@@ -31,10 +31,16 @@ public class CreateUsuarioServlet extends HttpServlet {
 		String provincia = checkNull(req.getParameter("provincia"));
 		String datos = checkNull(req.getParameter("datos"));
 		String IMEI = checkNull(req.getParameter("IMEI"));
+		String papellido1 = checkNull(req.getParameter("papellido1"));
+		String papellido2 = checkNull(req.getParameter("papellido2"));
+		String pnombre = checkNull(req.getParameter("pnombre"));
+		String pmovil = checkNull(req.getParameter("pmovil"));
+		String persona = checkNull(req.getParameter("persona"));
 
 		UserDAO userdao = UserDAOImpl.getInstance();
 		userdao.addUsuario(apellido1 + " " + apellido2, nombre, nacimiento, dni, sexo, telefono,
-				movil, domicilio, cp, localidad, provincia, datos, IMEI);
+				movil, domicilio, cp, localidad, provincia, datos, IMEI, persona, pnombre,
+				papellido1 + " " + papellido2, pmovil);
         
 		resp.sendRedirect("/");
 		

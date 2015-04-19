@@ -68,7 +68,7 @@
 									<td><c:out value="${alarm.name}" /></td>
 									<td><c:out value="${alarm.timestamp}" /></td>
 									<td><c:out value="${alarm.severity}" /></td>
-									<td><c:out value="${alarm.location}" /></td>
+									<td><c:out value="${alarm.address}" /></td>
 									<td><button type="button" class="btn btn-success btn-xs"><a href="<c:url value="/atender?id=${alarm.id}" />">Atender</a></button></td>
 								</tr>
 							</c:forEach>

@@ -52,7 +52,7 @@
 						<input type="text" class="form-control" name="nombre">
 					</div>
 					<div class="form-group">
-						<label for="apellidos">Fecha de Nacimiento</label>
+						<label for="nacimiento">Fecha de Nacimiento</label>
 						<input type="date" class="form-control" name="nacimiento">
 					</div>
 					<div class="form-group">
@@ -161,8 +161,44 @@
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="form-group">
-						<label for="comentarios">Comentarios</label><br>
-						<textarea style="width:100%;"rows="3" name="comentarios">Enfermedades, alergias, datos adicionales</textarea>
+						<label for="datos">Comentarios</label><br>
+						<textarea style="width:100%;"rows="3" name="datos">Enfermedades, alergias, datos adicionales</textarea>
+					</div>
+					<div class="form-group">
+						<label for="persona">Tipo</label></br>
+						<select name="persona">
+									<option VALUE="Pariente">Pariente</option>
+									<option VALUE="Cuidador">Cuidador</option>
+									<option VALUE="Vecino">Vecino</option>
+						</select>
+					</div>	
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 text-center">
+					<div class="form-group">
+						<label for="pnombre">Nombre</label>
+						<input type="text" class="form-control" name="pnombre">
+					</div>
+				</div>
+				<div class="col-lg-4 text-center">
+					<div class="form-group">
+						<label for="papellido1">Primer Apellido</label>
+						<input type="text" class="form-control" name="papellido1">
+					</div>
+				</div>
+				<div class="col-lg-4 text-center">
+					<div class="form-group">
+						<label for="papellido2">Segundo Apellido</label>
+						<input type="text" class="form-control" name="papellido2">
+					</div>
+				</div>	
+			</div>
+			<div class="row">
+				<div class="col-lg-4 text-center">
+					<div class="form-group">
+						<label for="pmovil">Móvil</label>
+						<input type="number" class="form-control" name="pmovil">
 					</div>
 					<div class="form-group">
 						<input type="submit" value="Finalizar registro" />

@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import com.google.api.server.spi.config.AnnotationBoolean;
 import com.google.api.server.spi.config.ApiResourceProperty;
 
+
 @Entity
 public class Alarm implements Serializable {
 
@@ -35,11 +36,15 @@ public class Alarm implements Serializable {
 	private List<Number> location;
 	@ApiResourceProperty(name = "location", ignored = AnnotationBoolean.FALSE)
 	private UserLocation apiLocation;
+	
+	String address;
+	 
 
 	
 	public Alarm() {
 		super();
 		this.attended = Boolean.FALSE;
+		address = "Madrid";
 	}
 
 	public Alarm(String name, Integer type, String originator, Long timestamp,
@@ -52,6 +57,8 @@ public class Alarm implements Serializable {
 		this.severity = severity;
 		this.attended = Boolean.FALSE;
 		this.location = location;
+		address = "Madrid";
+		
 	}
 	
 	public Long getId() {
@@ -98,6 +105,7 @@ public class Alarm implements Serializable {
 		this.severity = severity;
 	}
 
+	
 	public Boolean getAttended() {
 		return attended;
 	}
@@ -105,7 +113,6 @@ public class Alarm implements Serializable {
 	public void setAttended(Boolean attended) {
 		this.attended = attended;
 	}
-	
 	public List<Number> getLocation() {
 		return location;
 	}
@@ -123,6 +130,12 @@ public class Alarm implements Serializable {
 		Number lat = apiLocation.latitude;
 		Number lon = apiLocation.longitude;
 		this.location = Arrays.asList(lat, lon);
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 }

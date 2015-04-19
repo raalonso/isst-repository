@@ -30,11 +30,16 @@ public class Usuario implements Serializable {
 	private String provincia;
 	private String datos;
 	private String IMEI;
+	private String persona;
+	private String pnombre;
+	private String papellidos;
+	private String pmovil;
 	boolean finished;
 	String conectado;
 	public Usuario(String apellidos, String nombre, String nacimiento, 
 			String dni, String sexo, String telefono, String movil, String domicilio, String cp,
-			String localidad, String provincia, String datos, String IMEI) {
+			String localidad, String provincia, String datos, String IMEI, String persona, String pnombre, 
+			String papellidos, String pmovil ) {
 		this.apellidos = apellidos;
 		this.nombre = nombre;
 		this.nacimiento = nacimiento;
@@ -48,6 +53,10 @@ public class Usuario implements Serializable {
 		this.provincia = provincia;
 		this.datos = datos;
 		this.IMEI = IMEI;
+		this.persona = persona;
+		this.pnombre = pnombre;
+		this.papellidos = papellidos;
+		this.pmovil = pmovil;
 		finished = false;
 		conectado = "danger";
 		
@@ -132,6 +141,30 @@ public class Usuario implements Serializable {
 	}
 	public void setIMEI(String IMEI) {
 		this.IMEI = IMEI;
+	}
+	public String getPersona() {
+		return persona;
+	}
+	public void setPersona(String persona) {
+		this.persona = persona;
+	}
+	public String getPnombre() {
+		return pnombre;
+	}
+	public void setPnombre(String pnombre) {
+		this.pnombre = pnombre;
+	}
+	public String getPapellidos() {
+		return papellidos;
+	}
+	public void setPapellidos(String papellidos) {
+		this.papellidos = papellidos;
+	}
+	public String getPmovil() {
+		return pmovil;
+	}
+	public void setPMovil(String pmovil) {
+		this.pmovil = pmovil;
 	}
 	public boolean isFinished() {
 		return finished;
