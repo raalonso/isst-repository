@@ -48,38 +48,59 @@
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<br>
-				<h3>Información del Usuario</h3>
+				<h2><strong>Información del Usuario</strong></h2>
 				<br>
 				<table class="table table-striped">
 					<tr>
-						<th class="text-center">Nombre</th>
-						<th class="text-center">Apellidos</th>
+						<th class="text-center">Nombre, Apellidos</th>
 						<th class="text-center">Fecha de Nacimiento</th>
 						<th class="text-center">Sexo</th>
 						<th class="text-center">DNI/NIF</th>
+						<th class="text-center">Móvil</th>
+						<th class="text-center">Fijo</th>
 					</tr>
 					<tr>
-						<td><c:out value="${usuario.nombre}"/></td>
-						<td><c:out value="${usuario.apellidos}"/></td>
+						<td><strong><font color="green"><c:out value="${usuario.nombre}, ${usuario.apellidos}"/></font></strong></td>
 						<td><c:out value="${usuario.nacimiento}"/></td>
 						<td><c:out value="${usuario.sexo}"/></td>
 						<td><c:out value="${usuario.dni}"/></td>
+						<td><strong><font color="green"><c:out value="${usuario.movil}"/></font></strong></td>
+						<td><c:out value="${usuario.telefono}"/></td>
+					</tr>
+				</table>
+				
+				<table class="table table-striped">
+					<tr>
+						<th class="text-center">Domicilio</th>
+						<th class="text-center">Localidad</th>
+						<th class="text-center">Provincia</th>
+						<th class="text-center">Código Postal</th>
+					</tr>
+					<tr>
+						<td><c:out value="${usuario.domicilio}"/></td>
+						<td><c:out value="${usuario.localidad}"/></td>
+						<td><c:out value="${usuario.provincia}"/></td>
+						<td><c:out value="${usuario.cp}"/></td>
+					</tr>
+				</table>
+
+				<h3>Información del ${usuario.persona}</h3>
+				<br>
+				<table class="table table-striped">
+					<tr>
+						<th class="text-center">Nombre, Apellidos</th>
+						<th class="text-center">Móvil</th>
+					</tr>
+					<tr>
+						<td><c:out value="${usuario.pnombre}, ${usuario.papellidos}"/></td>
+						<td><c:out value="${usuario.pmovil}"/></td>
 					</tr>
 				</table>
 			</div>
 		</div>
 		<div class="col-lg-6 text-center">
-		<h5><strong>Dirección Postal</strong></h5>
-				<ul>
-					<li>Domicilio: <c:out value="${usuario.domicilio}"/></li>
-					<li>Localidad: <c:out value="${usuario.localidad}"/></li>
-					<li>Provincia: <c:out value="${usuario.provincia}"/></li>
-					<li>C.P: <c:out value="${usuario.cp}"/></li>
-				</ul>
-				<c:out value="${usuario.datos}" />
-				<br>
 				
-				<h5><i class="fa fa-map-marker"></i><strong>Localización</strong></h5>
+				<h3><i class="fa fa-map-marker"></i>Localización</h3>
 				<script src="http://maps.googleapis.com/maps/api/js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
@@ -108,30 +129,30 @@
 				<div id="googleMap" style="width:540px;height:380px;border-style:solid;border-width:1px;"></div>
 				<br>
 				
-				<h5><strong>Lista de Alarmas Atendidas</strong></h5>
+				<h3>Lista de Alarmas Atendidas</h3>
 				<table class="table table-striped table-condensed table-bordered">
 					<tr>
 						<th class="text-center">Nombre</th>
 						<th class="text-center">Tipo</th>
 						<th class="text-center">Severidad</th>
-						<th class="text-center">Sello de tiempo</th>
+						<th class="text-center">Fecha y hora</th>
 					</tr>
 					<c:forEach items="${alarms}" var="alarm">
 						<tr>
 							<td><c:out value="${alarm.name}" /></td>
 							<td><c:out value="${alarm.type}" /></td>
 							<td><c:out value="${alarm.severity}" /></td>
-							<td><c:out value="${alarm.timestamp}" /></td>
+							<td><c:out value="${alarm.date}" /></td>
 						</tr>
 					</c:forEach>
 				</table>
 			</div>
 			
 			<div class="col-lg-6 text-center">
-				<h5><strong>Comentarios</strong></h5><br>
+				<h3>Comentarios</h3><br>
 				<c:out value="${usuario.datos}" />
-				<br>
-				<h5><strong>Lista de Sensores</strong></h5>
+				<br><br>
+				<h3>Lista de Sensores</h3>
 				<table class="table table-striped table-condensed table-bordered">
 					<tr>
 						<th class="text-center">Sensor</th>

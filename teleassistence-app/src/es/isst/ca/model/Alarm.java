@@ -27,6 +27,7 @@ public class Alarm implements Serializable {
 	private Integer type;
 	private String originator;
 	private Long timestamp;
+	private String date;
 	private Integer severity;
 	
 	@ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
@@ -39,8 +40,6 @@ public class Alarm implements Serializable {
 	
 	String address;
 	 
-
-	
 	public Alarm() {
 		super();
 		this.attended = Boolean.FALSE;
@@ -54,6 +53,7 @@ public class Alarm implements Serializable {
 		this.type = type;
 		this.originator = originator;
 		this.timestamp = timestamp;
+		this.date = "";
 		this.severity = severity;
 		this.attended = Boolean.FALSE;
 		this.location = location;
@@ -104,7 +104,6 @@ public class Alarm implements Serializable {
 	public void setSeverity(Integer severity) {
 		this.severity = severity;
 	}
-
 	
 	public Boolean getAttended() {
 		return attended;
@@ -113,6 +112,7 @@ public class Alarm implements Serializable {
 	public void setAttended(Boolean attended) {
 		this.attended = attended;
 	}
+	
 	public List<Number> getLocation() {
 		return location;
 	}
@@ -131,11 +131,20 @@ public class Alarm implements Serializable {
 		Number lon = apiLocation.longitude;
 		this.location = Arrays.asList(lat, lon);
 	}
+	
 	public String getAddress() {
 		return address;
 	}
+	
 	public void setAddress(String address) {
 		this.address = address;
 	}
 	
+	public String getDate() {
+		return date;
+	}
+	
+	public void setDate(String date) {
+		this.date = date;
+	}
 }

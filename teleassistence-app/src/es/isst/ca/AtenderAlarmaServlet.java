@@ -25,26 +25,13 @@ public class AtenderAlarmaServlet extends HttpServlet {
 		String id = req.getParameter("id");
 
 		AlarmDAO alarmdao = AlarmDAOImpl.getInstance();
+		UserDAO userdao = UserDAOImpl.getInstance();
 			
 		Alarm alarm = alarmdao.getAlarmById(Long.parseLong(id));
-		
-		req.getSession().setAttribute("alarm", alarm);
-		
-		UserDAO userdao = UserDAOImpl.getInstance();
-		
 		Usuario usuario = userdao.getUsuarioByIMEI(alarm.getOriginator());
 		
-		
-		//req.getSession().setAttribute("usuarios", new ArrayList<Usuario>(usuarios));
-		
-		/*for (int i=0; i< usuarios.size(); i++){
-			if (usuarios.get(i).getIMEI() == alarm.getOriginator()){
-				usuario = usuarios.get(i);
-			}
-		}*/
-		
 		req.getSession().setAttribute("usuario", usuario);
-		
+		req.getSession().setAttribute("alarm", alarm);
 		RequestDispatcher view = req.getRequestDispatcher("Atender.jsp");
 		try {
 			view.forward(req, resp);

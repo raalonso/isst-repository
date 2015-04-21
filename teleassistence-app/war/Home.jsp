@@ -57,7 +57,7 @@
 						<table class="table table-striped">
 							<tr>
 								<th class="text-center">Alarma</th>
-								<th class="text-center">Timestamp</th>
+								<th class="text-center">Date</th>
 								<th class="text-center">Severity</th>
 								<th class="text-center">Location</th>
 								<th class="text-center"> </th>
@@ -66,7 +66,7 @@
 							<c:forEach items="${alarms}" var="alarm">
 								<tr>
 									<td><c:out value="${alarm.name}" /></td>
-									<td><c:out value="${alarm.timestamp}" /></td>
+									<td><c:out value="${alarm.date}" /></td>
 									<td><c:out value="${alarm.severity}" /></td>
 									<td><c:out value="${alarm.address}" /></td>
 									<td><button type="button" class="btn btn-success btn-xs"><a href="<c:url value="/atender?id=${alarm.id}" />">Atender</a></button></td>

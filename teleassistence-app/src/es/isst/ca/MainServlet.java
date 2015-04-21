@@ -7,9 +7,11 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -65,7 +67,7 @@ public class MainServlet extends HttpServlet {
 		System.out.println(latlng);
 		String url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latlng + "&sensor=false";
 		JSONObject json = readJsonFromUrl(url);
-		System.out.println("json:"+json);
+		//System.out.println("json:"+json);
 		JSONArray results = json.getJSONArray("results");
 		JSONObject rec = results.getJSONObject(0);
 		String formatted_address = rec.getString("formatted_address");
@@ -75,8 +77,6 @@ public class MainServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 				throws IOException {
 		
-		 
-
 		AlarmDAO alarmdao = AlarmDAOImpl.getInstance();
 
 		UserService userService = UserServiceFactory.getUserService();
@@ -85,12 +85,22 @@ public class MainServlet extends HttpServlet {
 		String url = userService.createLoginURL(req.getRequestURI());
 		String urlLinktext = "Login";
 		List<Alarm> alarms = new ArrayList<Alarm>();		
-				
+		
 		if (user != null){
 			url = userService.createLogoutURL(req.getRequestURI());
 			urlLinktext = "Logout";
 			
 			alarms = alarmdao.listUnattendedAlarms();
+			
+			for(int i=0; i<alarms.size(); i++) {
+				
+				SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
+				Date date = new Date(alarms.get(i).getTimestamp()*1000);
+			    String strDate = sdfDate.format(date);
+				alarms.get(i).setDate(strDate); 
+				//System.out.println(strDate+"eyyy");
+			}
+			
 			Comparator<Alarm> comparador = new Comparator<Alarm>() {
 				public int compare(Alarm a, Alarm b) {
 					int resultado = Integer.compare(a.getSeverity(), b.getSeverity());

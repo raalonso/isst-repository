@@ -1,9 +1,11 @@
 package es.isst.ca;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -42,6 +44,16 @@ public class InfoUsuarioServlet extends HttpServlet {
 		//System.out.println(latlon.getLatitude()+", "+latlon.getLongitude());
 		
 		alarms = alarmdao.listAttendedAlarms(usuario.getIMEI());
+		
+		for(int i=0; i<alarms.size(); i++) {
+			
+			SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
+			Date date = new Date(alarms.get(i).getTimestamp()*1000);
+		    String strDate = sdfDate.format(date);
+			alarms.get(i).setDate(strDate); 
+			//System.out.println(strDate+"eyyy");
+		}
+		
 		Comparator<Alarm> comparador = new Comparator<Alarm>() {
 			public int compare(Alarm a, Alarm b) {
 				int resultado = (int) Long.compare(a.getTimestamp(), b.getTimestamp());
