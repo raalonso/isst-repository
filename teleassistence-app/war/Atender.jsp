@@ -58,16 +58,19 @@
 					<tr>
 						<th></th>
 						<th class="text-center">Nombre completo</th>
+						<th class="text-center">DNI</th>
 						<th class="text-center">Teléfono de contacto</th>
 					</tr>
 					<tr class="danger">
 						<td><strong>PACIENTE</strong></td>
 						<td><strong>${usuario.apellidos}, ${usuario.nombre}</strong></td>
+						<td>${usuario.dni}</td>
 						<td><strong><font color="green">${usuario.movil}</strong></font></td>
 					</tr>
 					<tr>
 						<td><strong>${usuario.persona}</strong></td>
 						<td>${usuario.papellidos}, ${usuario.pnombre}</td>
+						<td>${usuario.pdni}</td>
 						<td>${usuario.pmovil}</td>
 					</tr>											
 				</table>
@@ -82,27 +85,6 @@
 					<i class="fa fa-h-square"></i> Nombre del Centro de Emergencia | <font color="red">912 345 678</font><br>
 					<i class="fa fa-h-square"></i> Nombre del Centro de Emergencia | <font color="red">912 345 678</font>
 				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<br>
-				<h3><i class="fa fa-info-circle"></i> Sensores Disparados</h3>
-				<br>
-				<table class="table table-striped table-condensed table-bordered">
-					<tr>
-						<th class="text-center">Sensor</th>
-						<th class="text-center">Valor</th>
-					</tr>
-					<tr>
-						<td>Sensor 1</td>
-						<td class="danger">Valor Fuera de Rango</td>
-					</tr>
-					<tr>
-						<td>Sensor 2</td>
-						<td class="success">Valor dentro de los Rangos correctos</td>
-					</tr>
-				</table>
 			</div>
 		</div>
 		<div class="row">
@@ -134,7 +116,7 @@
 	}
 	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
-				<div id="googleMap" style="width:500px;height:380px;border-style:solid;border-width:1px;"></div>
+			<div id="googleMap" style="width:550px;height:380px;border-style:solid;border-width:1px;"></div>
 			</div>
 			<div class ="col-lg-6 text-center">
 			<br>
@@ -142,19 +124,13 @@
 				<br>
 				<div>
 					<ul class="text-left">
-						<li><i class="fa fa-medkit"></i> Enfermedad 1</li>
-						<li><i class="fa fa-medkit"></i> Enfermedad 2</li>
+						<h5><i class="fa fa-medkit"></i> &nbsp; ${usuario.datos}</h5>
 					</ul>
 				</div>
 				<br>
 				<div>
-					<h5>${usuario.datos}</h5>
-				</div>
-				<br>
-				<br>
-				<div>
 					<button class="btn btn-success btn-lg">
-						<a href="<c:url value="/done?id=${alarm.id}"/>">FINALIZAR ALARMA</a>
+						<a href="<c:url value="/done?id=${alarm.id}"/>"><font color="white">FINALIZAR ALARMA</font></a>
 					</button>
 				</div>
 			</div>

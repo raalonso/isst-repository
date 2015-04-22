@@ -15,6 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 		<script type="text/javascript" src="<c:url value="/bootstrap/js/jquery-1.11.2.min.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/bootstrap/js/bootstrap.js" />"></script>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<meta charset="utf-8">
 	</head>
 	<body>
@@ -49,24 +50,22 @@
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<br>
-				<h3>Listado de Usuarios</h3>
+				<h3><i class="fa fa-list-ul"></i> &nbsp; Listado de Usuarios</h3>
 				<br>
 				<table class="table table-striped">
 					<tr>
 						<th class="text-center">ID</th>
 						<th class="text-center">Nombre Completo</th>
 						<th></th>
-						<th class="text-center">Acciones</th>
 						<th></th>
 					</tr>
 		
 					<c:forEach items="${usuarios}" var="usuario">
-						<tr>
-							<td class="${usuario.conectado}"><c:out value="${usuario.id}"/></td>
+						<tr class="text-center">
+							<td class="${usuario.conectado}"><c:out value="${usuario.IMEI}"/></td>
 							<td class="${usuario.conectado}"><c:out value="${usuario.apellidos}, ${usuario.nombre}" /></td>
-							<td><button type="button" class="btn btn-xs"><a href="<c:url value="/info?id=${usuario.id}"/>">Info</a></button></td>
-							<td><button type="button" class="btn btn-xs"><a href="<c:url value="/editar?id=${usuario.id}"/>">Editar</a></button></td>
-							<td><button type="button" class="btn btn-xs"><a href="<c:url value="/borrar?id=${usuario.id}"/>">Borrar</a></button></td>
+							<td><button type="button" class="btn btn-xs"><a href="<c:url value="/info?id=${usuario.id}"/>"><font size=3>Info</font></a></button></td>
+							<td><button type="button" class="btn btn-xs"><a href="<c:url value="/borrar?id=${usuario.id}"/>"><font size=3>Borrar</font></a></button></td>
 						</tr>
 					</c:forEach>
 				</table>

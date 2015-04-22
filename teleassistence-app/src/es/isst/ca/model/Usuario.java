@@ -34,12 +34,13 @@ public class Usuario implements Serializable {
 	private String pnombre;
 	private String papellidos;
 	private String pmovil;
+	private String pdni;
 	boolean finished;
 	String conectado;
 	public Usuario(String apellidos, String nombre, String nacimiento, 
 			String dni, String sexo, String telefono, String movil, String domicilio, String cp,
 			String localidad, String provincia, String datos, String IMEI, String persona, String pnombre, 
-			String papellidos, String pmovil ) {
+			String papellidos, String pmovil, String pdni) {
 		this.apellidos = apellidos;
 		this.nombre = nombre;
 		this.nacimiento = nacimiento;
@@ -57,6 +58,7 @@ public class Usuario implements Serializable {
 		this.pnombre = pnombre;
 		this.papellidos = papellidos;
 		this.pmovil = pmovil;
+		this.pdni = pdni;
 		finished = false;
 		conectado = "danger";
 		
@@ -165,6 +167,12 @@ public class Usuario implements Serializable {
 	}
 	public void setPMovil(String pmovil) {
 		this.pmovil = pmovil;
+	}
+	public String getPdni() {
+		return pdni;
+	}
+	public void setPdni(String pdni) {
+		this.pdni = pdni;
 	}
 	public boolean isFinished() {
 		return finished;

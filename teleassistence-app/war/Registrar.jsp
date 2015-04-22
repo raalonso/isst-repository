@@ -123,7 +123,7 @@
 						<input type="text" class="form-control" name="apellido1">
 					</div>
 					<div class="form-group">
-						<label for="sexo">Sexo</label>
+						<label for="sexo">Sexo</label><br>
 						<input type=radio name="sexo" value="M"> Hombre <input type=radio name="sexo" value="F"> Mujer
 					</div>
 					<div class="form-group">
@@ -200,8 +200,18 @@
 						<label for="pmovil">Móvil</label>
 						<input type="number" class="form-control" name="pmovil">
 					</div>
+				</div>
+				<div class="col-lg-4 text-center">
 					<div class="form-group">
-						<input type="submit" value="Finalizar registro" />
+						<label for="pdni">DNI</label>
+						<input type="text" class="form-control" name="pdni">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="form-group">
+						<input class="btn btn-success btn-lg" type="submit" value="Finalizar registro" />
 					</div>
 				</div>
 			</div>

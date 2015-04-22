@@ -15,6 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 		<script type="text/javascript" src="<c:url value="/bootstrap/js/jquery-1.11.2.min.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/bootstrap/js/bootstrap.js" />"></script>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<meta charset="utf-8">
 	</head>
 	<body>
@@ -50,6 +51,8 @@
 				<br>
 				<h2><strong>Información del Usuario</strong></h2>
 				<br>
+				<h3><i class="fa fa-user"></i> Datos personales y de contacto</h3>
+				<br>
 				<table class="table table-striped">
 					<tr>
 						<th class="text-center">Nombre, Apellidos</th>
@@ -59,7 +62,7 @@
 						<th class="text-center">Móvil</th>
 						<th class="text-center">Fijo</th>
 					</tr>
-					<tr>
+					<tr class="success">
 						<td><strong><font color="green"><c:out value="${usuario.nombre}, ${usuario.apellidos}"/></font></strong></td>
 						<td><c:out value="${usuario.nacimiento}"/></td>
 						<td><c:out value="${usuario.sexo}"/></td>
@@ -89,10 +92,12 @@
 				<table class="table table-striped">
 					<tr>
 						<th class="text-center">Nombre, Apellidos</th>
+						<th class="text-center">DNI</th>
 						<th class="text-center">Móvil</th>
 					</tr>
 					<tr>
 						<td><c:out value="${usuario.pnombre}, ${usuario.papellidos}"/></td>
+						<td><c:out value="${usuario.pdni}"/></td>
 						<td><c:out value="${usuario.pmovil}"/></td>
 					</tr>
 				</table>
@@ -100,7 +105,7 @@
 		</div>
 		<div class="col-lg-6 text-center">
 				
-				<h3><i class="fa fa-map-marker"></i>Localización</h3>
+				<h3><i class="fa fa-map-marker"></i> Localización</h3>
 				<script src="http://maps.googleapis.com/maps/api/js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
@@ -129,7 +134,7 @@
 				<div id="googleMap" style="width:540px;height:380px;border-style:solid;border-width:1px;"></div>
 				<br>
 				
-				<h3>Lista de Alarmas Atendidas</h3>
+				<h3><i class="fa fa-list-ul"></i> Lista de Alarmas Atendidas</h3>
 				<table class="table table-striped table-condensed table-bordered">
 					<tr>
 						<th class="text-center">Nombre</th>
@@ -149,10 +154,14 @@
 			</div>
 			
 			<div class="col-lg-6 text-center">
-				<h3>Comentarios</h3><br>
-				<c:out value="${usuario.datos}" />
-				<br><br>
-				<h3>Lista de Sensores de Glucosa</h3>
+				<h3><i class="fa fa-user-md"></i> Enfermedades, alergias y más datos</h3>
+				<div>
+					<ul class="text-left">
+						<h5><i class="fa fa-medkit"></i> &nbsp; ${usuario.datos}</h5>
+					</ul>
+				</div>
+				<br>
+				<h3><i class="fa fa-info-circle"></i> Lista de Sensores de Glucosa</h3>
 				<table class="table table-striped table-condensed table-bordered">
 					<tr>
 						<th class="text-center">Timestamp</th>

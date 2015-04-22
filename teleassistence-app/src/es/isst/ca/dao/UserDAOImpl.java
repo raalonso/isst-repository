@@ -42,12 +42,12 @@ public class UserDAOImpl implements UserDAO {
 			String dni, String sexo, String telefono, String movil,
 			String domicilio, String cp, String localidad, String provincia,
 			String datos, String IMEI, String persona, String pnombre, String papellidos,
-			String pmovil) {
+			String pmovil, String pdni) {
 		synchronized (this) {
 			EntityManager em = EMFService.get().createEntityManager();
 			Usuario usuario = new Usuario(apellidos, nombre, nacimiento, dni,
 					sexo, telefono, movil, domicilio, cp, localidad, provincia,
-					datos, IMEI, persona, pnombre, papellidos, pmovil);
+					datos, IMEI, persona, pnombre, papellidos, pmovil, pdni);
 			em.persist(usuario);
 			em.close();
 		}

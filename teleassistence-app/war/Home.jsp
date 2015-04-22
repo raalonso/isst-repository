@@ -15,6 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 		<script type="text/javascript" src="<c:url value="/bootstrap/js/jquery-1.11.2.min.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/bootstrap/js/bootstrap.js" />"></script>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<meta charset="utf-8">
 	</head>
 	<body>
@@ -52,7 +53,7 @@
 				<div class="row">
 					<div class="col-lg-12 text-center">
 						<br>
-						<h3>Tienes ${fn:length(alarms)} alarmas pendientes</h3>
+						<h3><i class="fa fa-list-ol"></i> &nbsp;Tienes ${fn:length(alarms)} alarmas pendientes</h3>
 						<br>
 						<table class="table table-striped">
 							<tr>
@@ -69,7 +70,7 @@
 									<td><c:out value="${alarm.date}" /></td>
 									<td><c:out value="${alarm.severity}" /></td>
 									<td><c:out value="${alarm.address}" /></td>
-									<td><button type="button" class="btn btn-success btn-xs"><a href="<c:url value="/atender?id=${alarm.id}" />">Atender</a></button></td>
+									<td><button type="button" class="btn btn-success btn-xs"><a href="<c:url value="/atender?id=${alarm.id}" />"><font size=3 color="white">Atender</font></a></button></td>
 								</tr>
 							</c:forEach>
 						</table>
