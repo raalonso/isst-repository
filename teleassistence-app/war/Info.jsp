@@ -152,20 +152,20 @@
 				<h3>Comentarios</h3><br>
 				<c:out value="${usuario.datos}" />
 				<br><br>
-				<h3>Lista de Sensores</h3>
+				<h3>Lista de Sensores de Glucosa</h3>
 				<table class="table table-striped table-condensed table-bordered">
 					<tr>
-						<th class="text-center">Sensor</th>
+						<th class="text-center">Timestamp</th>
+						<th class="text-center">Fecha y hora</th>
 						<th class="text-center">Valor</th>
 					</tr>
-					<tr>
-						<td>Sensor 1</td>
-						<td class="danger">Valor Fuera de Rango</td>
-					</tr>
-					<tr>
-						<td>Sensor 2</td>
-						<td class="success">Valor dentro de los Rangos correctos</td>
-					</tr>
+					<c:forEach items="${glucoses}" var="glucose">
+						<tr>
+							<td><c:out value="${glucose.timestamp}" /></td>
+							<td><c:out value="${glucose.date}" /></td>
+							<td><c:out value="${glucose.glucose}" /></td>
+						</tr>
+					</c:forEach>
 				</table>
 			</div>
 		</div>

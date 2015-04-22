@@ -1,11 +1,13 @@
 package es.isst.ca.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import es.isst.ca.model.Event;
+import es.isst.ca.model.GlucoseMeter;
 import es.isst.ca.model.Location;
 import es.isst.ca.model.Acceleration;
 
@@ -32,7 +34,18 @@ public class EventDAOImpl implements EventDAO {
 			em.persist(location);
 			em.close();
 		}
-
+	}
+	
+	@Override
+	public void addGlucoseMeter(String originator, Long timestamp,
+			Double glucoseVal) {
+		synchronized (this) {
+			EntityManager em = EMFService.get().createEntityManager();
+			Event glucose = GlucoseMeter.create(originator, timestamp, glucoseVal);
+			em.persist(glucose);
+			em.close();
+		}
+		
 	}
 
 	@Override
@@ -65,6 +78,27 @@ public class EventDAOImpl implements EventDAO {
 		List<Location> events = q.getResultList();
 		return events;
 	}
+	
+	@Override
+	public List<GlucoseMeter> listGlucoseMeters(String originator) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em
+				.createQuery("select t from Event t where t.type = 302 and t.originator = :originator");
+		q.setParameter("originator", originator);
+		List<Event> events = q.getResultList();
+		
+		List<GlucoseMeter> glucoseVals = new ArrayList();
+		
+		if (events.size() != 0) {
+			
+			for (int i = 0; i < events.size(); i++) {
+				glucoseVals.add(i, new GlucoseMeter(originator, 
+						events.get(i).getTimestamp(), (double) events.get(i).getData().get(0)));
+			}
+		} 
+		
+		return glucoseVals;
+	}
 
 	@Override
 	public Location getUserLocation(String originator) {
@@ -94,6 +128,4 @@ public class EventDAOImpl implements EventDAO {
 		}
 		return location;
 	}
-	
-
 }

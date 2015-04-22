@@ -20,6 +20,7 @@ public class Event implements Serializable {
 	protected String name;
 	protected String originator;
 	protected Long timestamp;
+	protected String date;
 	protected Integer type;
 	protected List<Number> data;
 	protected String units;
@@ -29,6 +30,7 @@ public class Event implements Serializable {
 		this.name = name;
 		this.originator = originator;
 		this.timestamp = timestamp;
+		this.date = "";
 		this.type = type;
 		this.data = data;
 		this.units = "";
@@ -48,6 +50,14 @@ public class Event implements Serializable {
 
 	public void setOriginator(String originator) {
 		this.originator = originator;
+	}
+	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 	
 	public Long getTimestamp() {

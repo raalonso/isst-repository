@@ -19,6 +19,7 @@ import es.isst.ca.dao.EventDAOImpl;
 import es.isst.ca.dao.UserDAO;
 import es.isst.ca.dao.UserDAOImpl;
 import es.isst.ca.model.Event;
+import es.isst.ca.model.GlucoseMeter;
 import es.isst.ca.model.Location;
 import es.isst.ca.model.Usuario;
 import es.isst.ca.dao.AlarmDAO;
@@ -40,6 +41,7 @@ public class InfoUsuarioServlet extends HttpServlet {
 		Usuario usuario = userdao.getUsuarioById(Long.parseLong(id));
 		List<Alarm> alarms = new ArrayList<Alarm>();
 		Location latlon = eventdao.getUserLocation(usuario.getIMEI());
+		List<GlucoseMeter> glucoseVals = eventdao.listGlucoseMeters(usuario.getIMEI());
 		
 		//System.out.println(latlon.getLatitude()+", "+latlon.getLongitude());
 		
@@ -51,6 +53,15 @@ public class InfoUsuarioServlet extends HttpServlet {
 			Date date = new Date(alarms.get(i).getTimestamp()*1000);
 		    String strDate = sdfDate.format(date);
 			alarms.get(i).setDate(strDate); 
+			//System.out.println(strDate+"eyyy");
+		}
+		
+		for(int i=0; i<glucoseVals.size(); i++) {
+			
+			SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
+			Date date = new Date(glucoseVals.get(i).getTimestamp()*1000);
+		    String strDate = sdfDate.format(date);
+			glucoseVals.get(i).setDate(strDate); 
 			//System.out.println(strDate+"eyyy");
 		}
 		
@@ -68,6 +79,7 @@ public class InfoUsuarioServlet extends HttpServlet {
 		Collections.sort(alarms, comparador);
 		
 		req.getSession().setAttribute("alarms", new ArrayList<Alarm>(alarms));
+		req.getSession().setAttribute("glucoses", new ArrayList<GlucoseMeter>(glucoseVals));
 		req.getSession().setAttribute("usuario", usuario);
 		req.getSession().setAttribute("latlon", latlon);
 		RequestDispatcher view = req.getRequestDispatcher("Info.jsp");
