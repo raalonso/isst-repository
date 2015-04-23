@@ -77,45 +77,66 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-12 text-center">
-				<br>
-				<h3><i class="fa fa-hospital-o"></i> Centros de Emergencia más cercanos</h3>
-				<br>
-				<div>
-					<i class="fa fa-h-square"></i> Nombre del Centro de Emergencia | <font color="red">912 345 678</font><br>
-					<i class="fa fa-h-square"></i> Nombre del Centro de Emergencia | <font color="red">912 345 678</font>
-				</div>
-			</div>
-		</div>
-		<div class="row">
 			<div class="col-lg-6 text-center">
 			<br>
 				<h3><i class="fa fa-map-marker"></i> Localización</h3>
+				<h4><i class="fa fa-hospital-o"></i> Centros de Emergencia más cercanos</h3>
 				<script src="http://maps.googleapis.com/maps/api/js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script>
-	function initialize() {
-		var mapProp = {
-			center : new google.maps.LatLng(${alarm.location[0]}, ${alarm.location[1]}),
-			zoom :16,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
-		};
-		var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-		var marker = new google.maps.Marker({
-			position: new google.maps.LatLng(${alarm.location[0]}, ${alarm.location[1]}),
-			map: map
-		});
-		var latlng = ""+${alarm.location[0]}+", "+${alarm.location[1]}+"";
-		var url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latlng + "&sensor=false";
-		var infowindow = new google.maps.InfoWindow();
-		$.getJSON(url, function (data) {
-			infowindow.setContent(data.results[0].formatted_address.toString());
-			//alert(adress);
-		});
-		infowindow.open(map, marker);
-	}
-	google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+				<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+				<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true_or_false"></script>
+				<script>
+				function initialize() {
+					
+					var mapProp = {
+						center : new google.maps.LatLng(${alarm.location[0]}, ${alarm.location[1]}),
+						zoom :16,
+						mapTypeId : google.maps.MapTypeId.ROADMAP
+					};
+					
+					var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+					
+					var request = {
+						location: new google.maps.LatLng(${alarm.location[0]}, ${alarm.location[1]}),
+						radius: '100',
+						query: 'Hospital'
+					};
+					var pinImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/009900/");
+					var marker = new google.maps.Marker({
+						position: new google.maps.LatLng(${alarm.location[0]}, ${alarm.location[1]}),
+						map: map
+					});
+					
+					var latlng = ""+${alarm.location[0]}+", "+${alarm.location[1]}+"";
+					var url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latlng + "&sensor=false";
+					
+					var infowindow = new google.maps.InfoWindow();
+					
+					var service = new google.maps.places.PlacesService(map);
+					service.textSearch(request, function (results) {
+						for (var i = 0; i < results.length; i++) {
+							var place = results[i];
+						    //createMarker(results[i]);
+						    var marker = new google.maps.Marker({
+								position: place.geometry.location,
+								icon: pinImage,
+								title: place.formatted_address.toString() 
+										+ "\nNombre: " + place.name.toString(),
+								map: map
+							});
+						    //alert(place.formatted_address.toString()+"  "+place.name.toString());
+						}
+					});
+					$.getJSON(url, function (data) {
+						infowindow.setContent(data.results[0].formatted_address.toString());
+						//alert(adress);
+					});
+					
+					infowindow.open(map, marker);
+				}
+				google.maps.event.addDomListener(window, 'load', initialize);
+				
+				
+				</script>
 			<div id="googleMap" style="width:550px;height:380px;border-style:solid;border-width:1px;"></div>
 			</div>
 			<div class ="col-lg-6 text-center">

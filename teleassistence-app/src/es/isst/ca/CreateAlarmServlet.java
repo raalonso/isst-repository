@@ -26,8 +26,6 @@ public class CreateAlarmServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		System.out.println("Creating new DUMMY alarm ");
-
-		long timestamp = System.currentTimeMillis() / 1000L;
 		
 //		AlarmDAO alarm_dao = AlarmDAOImpl.getInstance();
 //		
@@ -45,6 +43,8 @@ public class CreateAlarmServlet extends HttpServlet {
 //		List<Alarm> attended_originator_alarms = alarm_dao.listAttendedAlarms("IMSI0123456789");
 //		System.out.println("Attended Alarms for originator " + attended_originator_alarms);
 		
+		
+		long timestamp = System.currentTimeMillis();
 		EventDAO dao2 = EventDAOImpl.getInstance();
         
         //dao2.addLocation("IMSI0123456711", timestamp, 40.714224, -3.961452);
