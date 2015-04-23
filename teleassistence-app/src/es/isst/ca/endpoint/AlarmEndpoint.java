@@ -10,6 +10,9 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.response.CollectionResponse;
+import com.google.appengine.api.channel.ChannelMessage;
+import com.google.appengine.api.channel.ChannelService;
+import com.google.appengine.api.channel.ChannelServiceFactory;
 import com.google.appengine.api.datastore.Cursor;
 import com.google.appengine.datanucleus.query.JPACursorHelper;
 
@@ -150,7 +153,14 @@ public class AlarmEndpoint {
 	public Alarm insertAlarm(Alarm alarm) {
 		
 		AlarmDAO alarm_dao = AlarmDAOImpl.getInstance();
+		
 		alarm_dao.addAlarm(alarm);
+		
+		ChannelService channelService = ChannelServiceFactory.getChannelService();
+
+		// PLEASE NOTE: (again) that this value should be different for EACH user
+		//
+		channelService.sendMessage(new ChannelMessage("OPERATOR1", alarm.getName()));		
 		
 		
 //		EntityManager mgr = getEntityManager();

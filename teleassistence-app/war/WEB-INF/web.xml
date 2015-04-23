@@ -71,6 +71,7 @@
 		<servlet-name>InfoUsuario</servlet-name>
 		<url-pattern>/info</url-pattern>
 	</servlet-mapping>
+
 	<welcome-file-list>
 		<welcome-file>main</welcome-file>
 	</welcome-file-list>
@@ -87,7 +88,16 @@
 		<servlet-name>SystemServiceServlet</servlet-name>
 		<url-pattern>/_ah/spi/*</url-pattern>
 	</servlet-mapping>
-	
+
+	<servlet>
+		<servlet-name>OpenChannelServlet</servlet-name>
+		<servlet-class>es.isst.ca.channel.OpenChannelServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OpenChannelServlet</servlet-name>
+		<url-pattern>/channel</url-pattern>
+	</servlet-mapping>
+
 	<servlet>
 		<display-name>Remote API Servlet</display-name>
 		<servlet-name>RemoteApiServlet</servlet-name>
