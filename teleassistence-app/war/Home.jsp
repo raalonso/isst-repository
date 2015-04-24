@@ -15,6 +15,9 @@
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 		<script type="text/javascript" src="<c:url value="/bootstrap/js/jquery-1.11.2.min.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/bootstrap/js/bootstrap.js" />"></script>
+		<script type="text/javascript" src="/_ah/channel/jsapi"></script>
+    	<script type="text/javascript" src="/script-article.js" ></script>
+
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<meta charset="utf-8">
 	</head>
@@ -80,6 +83,10 @@
 		
 				<div class="row">
 					<div class="col-lg-12 text-center">
+					   <p>Opened: <span id="opened">none yet</span></p>
+      					<p>Message: <span id="message">none yet</span></p>
+      					<p>Error: <span id="error">none yet</span></p>
+      					<p>Close: <span id="close">none yet</span></p>
 						<h3>Añadir una nueva alarma DUMMY</h3>
 						<br>
 
@@ -98,5 +105,26 @@
 		</c:otherwise>
 		</c:choose>
 		</div>
+		
+	<script>
+	var myModule = Object.create({
+	    sendMessage : function() {
+	      var xhr = new XMLHttpRequest();
+	      xhr.open('POST', '/send-message', true);
+	      xhr.send();
+	    },
+	    initChannel : function() {
+	      var channel = new goog.appengine.Channel("${token}");
+	      var socket = channel.open();
+	      socket.onopen = channelHandler.onOpened;
+	      socket.onmessage = channelHandler.onMessage;
+	      socket.onerror = channelHandler.onError;
+	      socket.onclose = channelHandler.onClose;
+	    }});
+	    
+	    document.addEventListener('DOMContentLoaded',
+	        myModule.initChannel, false);
+	  </script>
+	
 	</body>
 </html>

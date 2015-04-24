@@ -5,5 +5,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-labs.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/java-json.jar"/>
+	<classpathentry kind="lib" path="lib/antlr-3.5.2-complete.jar"/>
+	<classpathentry kind="lib" path="lib/ST-4.0.8.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

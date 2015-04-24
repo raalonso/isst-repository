@@ -20,10 +20,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.antlr.stringtemplate.StringTemplate;
+import org.antlr.stringtemplate.StringTemplateGroup;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.appengine.api.channel.ChannelService;
+import com.google.appengine.api.channel.ChannelServiceFactory;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
@@ -135,6 +139,21 @@ public class MainServlet extends HttpServlet {
 		}
 		
 		req.getSession().setAttribute("user", user);
+		
+		/////// Open Channel for User.
+		
+		ChannelService channelService = ChannelServiceFactory.getChannelService();
+		// Server-side identifier fir this channel
+		// PLEASE NOTE: this value should be different for EACH user
+		//
+		String operatorID = "OPERATOR1";
+		//String operatorID = user.getUserId();
+		String token = channelService.createChannel(operatorID);
+		// The Channel API returns a token that should be sent to the client
+		// This token looks like this: channel-4rw5e-1
+		/////////
+		
+		req.getSession().setAttribute("token", token);
 		req.getSession().setAttribute("alarms", new ArrayList<Alarm>(alarms));
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);

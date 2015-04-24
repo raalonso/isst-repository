@@ -160,7 +160,7 @@ public class AlarmEndpoint {
 
 		// PLEASE NOTE: (again) that this value should be different for EACH user
 		//
-		channelService.sendMessage(new ChannelMessage("OPERATOR1", alarm.getName()));		
+		channelService.sendMessage(new ChannelMessage("OPERATOR1", alarm.getId().toString()));		
 		
 		
 //		EntityManager mgr = getEntityManager();
