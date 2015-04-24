@@ -112,7 +112,7 @@ public class MainServlet extends HttpServlet {
 				}
 			};
 			
-			Collections.sort(alarms, comparador);
+			Collections.sort(alarms, Collections.reverseOrder(comparador));
 			
 			if (alarms.size() != 0) {
 				for (int i = 0; i < alarms.size(); i++) {

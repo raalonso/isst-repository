@@ -36,7 +36,7 @@ public class ListadoUsuariosServlet extends HttpServlet {
 				Location location = eventdao.getUserLocation(usuarios.get(i)
 						.getIMEI());
 
-				long ts = System.currentTimeMillis() / 1000L;
+				long ts = System.currentTimeMillis();
 				long diff = ts - location.getTimestamp();
 
 				if (diff < 60) {

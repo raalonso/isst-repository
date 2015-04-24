@@ -44,6 +44,26 @@ public class InfoUsuarioServlet extends HttpServlet {
 		List<GlucoseMeter> glucoseVals = eventdao.listGlucoseMeters(usuario.getIMEI());
 		
 		//System.out.println(latlon.getLatitude()+", "+latlon.getLongitude());
+		Comparator<GlucoseMeter> comparadore = new Comparator<GlucoseMeter>() {
+			public int compare(GlucoseMeter a, GlucoseMeter b) {
+
+				int resultado = (int) Long.compare(a.getTimestamp(), b.getTimestamp());
+				if (resultado != 0) {
+					return resultado;
+				} else {
+					return -1;
+				}
+			}
+		};
+		
+		Collections.sort(glucoseVals, Collections.reverseOrder(comparadore));
+		
+		List<GlucoseMeter> glucosess = new ArrayList<GlucoseMeter>();
+		for(int i=0; i<10; i++) {
+			glucosess.add(glucoseVals.get(i));
+		}
+		
+		glucoseVals = glucosess;
 		
 		alarms = alarmdao.listAttendedAlarms(usuario.getIMEI());
 		
@@ -56,7 +76,7 @@ public class InfoUsuarioServlet extends HttpServlet {
 			//System.out.println(strDate+"eyyy");
 		}
 		
-		Comparator<Alarm> comparador = new Comparator<Alarm>() {
+		Comparator<Alarm> comparadora = new Comparator<Alarm>() {
 			public int compare(Alarm a, Alarm b) {
 				int resultado = (int) Long.compare(a.getTimestamp(), b.getTimestamp());
 				if (resultado != 0) {
@@ -67,7 +87,7 @@ public class InfoUsuarioServlet extends HttpServlet {
 			}
 		};
 		
-		Collections.sort(alarms, comparador);
+		Collections.sort(alarms, Collections.reverseOrder(comparadora));
 		
 		req.getSession().setAttribute("alarms", new ArrayList<Alarm>(alarms));
 		req.getSession().setAttribute("glucoses", new ArrayList<GlucoseMeter>(glucoseVals));
