@@ -1,7 +1,9 @@
 package es.isst.ca.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -27,7 +29,6 @@ public class Alarm implements Serializable {
 	private Integer type;
 	private String originator;
 	private Long timestamp;
-	private String date;
 	private Integer severity;
 	
 	@ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
@@ -53,7 +54,6 @@ public class Alarm implements Serializable {
 		this.type = type;
 		this.originator = originator;
 		this.timestamp = timestamp;
-		this.date = "";
 		this.severity = severity;
 		this.attended = Boolean.FALSE;
 		this.location = location;
@@ -141,10 +141,10 @@ public class Alarm implements Serializable {
 	}
 	
 	public String getDate() {
-		return date;
+		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
+		Date date = new Date(this.getTimestamp());
+	    String strDate = sdfDate.format(date);
+		return strDate;
 	}
 	
-	public void setDate(String date) {
-		this.date = date;
-	}
 }

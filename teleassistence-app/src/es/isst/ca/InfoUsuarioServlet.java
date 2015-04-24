@@ -47,15 +47,6 @@ public class InfoUsuarioServlet extends HttpServlet {
 		
 		alarms = alarmdao.listAttendedAlarms(usuario.getIMEI());
 		
-		for(int i=0; i<alarms.size(); i++) {
-			
-			SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
-			Date date = new Date(alarms.get(i).getTimestamp());
-		    String strDate = sdfDate.format(date);
-			alarms.get(i).setDate(strDate); 
-			//System.out.println(strDate+"eyyy");
-		}
-		
 		for(int i=0; i<glucoseVals.size(); i++) {
 			
 			SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
