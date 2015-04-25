@@ -7,6 +7,8 @@ onOpened : function() {
 onMessage : function(message) {
   var el = document.getElementById('message');
   el.firstChild.nodeValue = message.data;
+  alert("ALARMA URGENTE:\n"+el.innerHTML+"");
+  window.location.reload();
 },
 onError : function() {
   var el = document.getElementById('error');
