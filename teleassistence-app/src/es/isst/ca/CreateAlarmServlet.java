@@ -2,6 +2,7 @@ package es.isst.ca;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -47,8 +48,14 @@ public class CreateAlarmServlet extends HttpServlet {
 		long timestamp = System.currentTimeMillis();
 		EventDAO dao2 = EventDAOImpl.getInstance();
         
+		Random randomGenerator = new Random();
+		
         dao2.addLocation("IMSI0123456711", timestamp, 40.714224, -3.961452);
-        dao2.addGlucoseMeter("IMSI0123456711", timestamp, (double) 5); 
+        for (int i=0; i<10; i++) {
+        	dao2.addGlucoseMeter("IMSI0123456711", timestamp-(60000*i), (double) 5+randomGenerator.nextInt(100));
+        }
+        
+        
         
         System.out.println(timestamp);
         

@@ -65,7 +65,7 @@ public class InfoUsuarioServlet extends HttpServlet {
 			for (int i = 0; i < glucoseVals.size(); i++) {
 				tenglucoses.add(glucoseVals.get(i));
 			}
-		} else if (glucoseVals.size() > 10) {
+		} else if (glucoseVals.size() >= 10) {
 			for (int i = 0; i < 10; i++) {
 				tenglucoses.add(glucoseVals.get(i));
 			}
@@ -80,17 +80,22 @@ public class InfoUsuarioServlet extends HttpServlet {
 					glucosesld.add(glucoseVals.get(i));
 				}
 			}
-		}
+		} else {}
 		
 		alarms = alarmdao.listAttendedAlarms(usuario.getIMEI());
 		
-		for(int i=0; i<glucoseVals.size(); i++) {
-			
-			SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
-			Date date = new Date(tenglucoses.get(i).getTimestamp());
-		    String strDate = sdfDate.format(date);
-			glucoseVals.get(i).setDate(strDate); 
-			//System.out.println(strDate+"eyyy");
+		if (tenglucoses.size() > 0) {
+			for (int i = 0; i < tenglucoses.size(); i++) {
+
+				SimpleDateFormat sdfDate = new SimpleDateFormat(
+						"yyyy-MM-dd HH:mm:ss");// dd/MM/yyyy
+				Date date = new Date(tenglucoses.get(i).getTimestamp());
+				String strDate = sdfDate.format(date);
+				glucoseVals.get(i).setDate(strDate);
+				// System.out.println(strDate+"eyyy");
+
+			}
+		} else {
 		}
 		
 		Comparator<Alarm> comparadora = new Comparator<Alarm>() {
