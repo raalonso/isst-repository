@@ -61,9 +61,9 @@
 						<table class="table table-striped">
 							<tr>
 								<th class="text-center">Alarma</th>
-								<th class="text-center">Date</th>
-								<th class="text-center">Severity</th>
-								<th class="text-center">Location</th>
+								<th class="text-center">Fecha</th>
+								<th class="text-center">Severidad</th>
+								<th class="text-center">Localización</th>
 								<th class="text-center"> </th>
 							</tr>
 				

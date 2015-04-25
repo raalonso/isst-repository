@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import es.isst.ca.model.Alarm;
-import es.isst.ca.model.Alarma;
 import es.isst.ca.model.DistressAlarm;
 import es.isst.ca.model.Usuario;
 
@@ -105,7 +104,7 @@ public class AlarmDAOImpl implements AlarmDAO {
 	public void removeAlarm(long id) {
 		EntityManager em = EMFService.get().createEntityManager();
 		try {
-			Alarma alarma = em.find(Alarma.class, id);
+			Alarm alarma = em.find(Alarm.class, id);
 			em.remove(alarma);
 		} finally {
 			em.close();
