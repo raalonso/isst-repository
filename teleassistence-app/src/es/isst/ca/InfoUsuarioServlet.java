@@ -65,10 +65,12 @@ public class InfoUsuarioServlet extends HttpServlet {
 			for (int i = 0; i < glucoseVals.size(); i++) {
 				tenglucoses.add(glucoseVals.get(i));
 			}
-		} else {
+		} else if (glucoseVals.size() > 10) {
 			for (int i = 0; i < 10; i++) {
 				tenglucoses.add(glucoseVals.get(i));
 			}
+		} else {
+			
 		}
 		
 		if (glucoseVals.size() > 0) {
