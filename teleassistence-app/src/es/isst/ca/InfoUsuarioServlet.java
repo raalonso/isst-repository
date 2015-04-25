@@ -59,8 +59,15 @@ public class InfoUsuarioServlet extends HttpServlet {
 		Collections.sort(glucoseVals, Collections.reverseOrder(comparadore));
 		
 		List<GlucoseMeter> glucosess = new ArrayList<GlucoseMeter>();
-		for(int i=0; i<10; i++) {
-			glucosess.add(glucoseVals.get(i));
+		
+		if ((glucoseVals.size() > 0) && (glucoseVals.size() < 10)) {
+			for (int i = 0; i < glucoseVals.size(); i++) {
+				glucosess.add(glucoseVals.get(i));
+			}
+		} else {
+			for (int i = 0; i < 10; i++) {
+				glucosess.add(glucoseVals.get(i));
+			}
 		}
 		
 		glucoseVals = glucosess;
