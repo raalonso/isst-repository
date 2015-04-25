@@ -168,14 +168,45 @@
 						<th class="text-center">Fecha y hora</th>
 						<th class="text-center">Valor</th>
 					</tr>
-					<c:forEach items="${glucoses}" var="glucose">
+					<c:forEach items="${tenglucoses}" var="tenglucose">
 						<tr>
-							<td><c:out value="${glucose.timestamp}" /></td>
-							<td><c:out value="${glucose.date}" /></td>
-							<td><c:out value="${glucose.glucose}" /></td>
+							<td><c:out value="${tenglucose.timestamp}" /></td>
+							<td><c:out value="${tenglucose.date}" /></td>
+							<td><c:out value="${tenglucose.glucose}" /></td>
 						</tr>
 					</c:forEach>
 				</table>
+				<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+				<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+				<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+				<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+				<div id="myfirstchart" style="height: 250px;"></div>
+				<script type="text/javascript">
+			
+				var a = [
+					<c:forEach items="${glucosesld}" var="glucoseld" varStatus="status">  
+    					{Time: ${glucoseld.timestamp},
+    					Glucose: ${glucoseld.glucose}}
+    				<c:if test="${!status.last}">    
+      				,    
+    				</c:if>  
+    				</c:forEach>  
+				];
+				new Morris.Line({
+					  // ID of the element in which to draw the chart.
+					  element: 'myfirstchart',
+					  // Chart data records -- each entry in this array corresponds to a point on
+					  // the chart.
+					  data: a,
+					  // The name of the data record attribute that contains x-values.
+					  xkey: 'Time',
+					  // A list of names of data record attributes that contain y-values.
+					  ykeys: ['Glucose'],
+					  // Labels for the ykeys -- will be displayed when you hover over the
+					  // chart.
+					  labels: ['Value']
+					});
+				</script>
 			</div>
 		</div>
 	</div>		

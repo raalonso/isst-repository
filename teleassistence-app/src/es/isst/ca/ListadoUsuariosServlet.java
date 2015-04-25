@@ -38,8 +38,11 @@ public class ListadoUsuariosServlet extends HttpServlet {
 
 				long ts = System.currentTimeMillis();
 				long diff = ts - location.getTimestamp();
+				
+				System.out.println("la ultima:"+ location.getTimestamp());
+				System.out.println("la actual:"+ ts);
 
-				if (diff < 60) {
+				if (diff < 60000) {
 					usuarios.get(i).setConectado("success");
 				} else {
 					usuarios.get(i).setConectado("danger");

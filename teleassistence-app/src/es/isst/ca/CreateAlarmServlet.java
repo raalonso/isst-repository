@@ -47,8 +47,11 @@ public class CreateAlarmServlet extends HttpServlet {
 		long timestamp = System.currentTimeMillis();
 		EventDAO dao2 = EventDAOImpl.getInstance();
         
-        //dao2.addLocation("IMSI0123456711", timestamp, 40.714224, -3.961452);
-        dao2.addGlucoseMeter("IMSI0123456711", timestamp, (double) 50); 
+        dao2.addLocation("IMSI0123456711", timestamp, 40.714224, -3.961452);
+        dao2.addGlucoseMeter("IMSI0123456711", timestamp, (double) 5); 
+        
+        System.out.println(timestamp);
+        
         //dao2.addAcceleration("IMSI023456711", timestamp, 10.0, 12.0, 20.0);
         
         List<Event> events = dao2.listEvents("IMSI0123456711");

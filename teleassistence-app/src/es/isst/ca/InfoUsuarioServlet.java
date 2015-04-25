@@ -58,26 +58,34 @@ public class InfoUsuarioServlet extends HttpServlet {
 		
 		Collections.sort(glucoseVals, Collections.reverseOrder(comparadore));
 		
-		List<GlucoseMeter> glucosess = new ArrayList<GlucoseMeter>();
+		List<GlucoseMeter> tenglucoses = new ArrayList<GlucoseMeter>();
+		List<GlucoseMeter> glucosesld = new ArrayList<GlucoseMeter>();
 		
 		if ((glucoseVals.size() > 0) && (glucoseVals.size() < 10)) {
 			for (int i = 0; i < glucoseVals.size(); i++) {
-				glucosess.add(glucoseVals.get(i));
+				tenglucoses.add(glucoseVals.get(i));
 			}
 		} else {
 			for (int i = 0; i < 10; i++) {
-				glucosess.add(glucoseVals.get(i));
+				tenglucoses.add(glucoseVals.get(i));
 			}
 		}
 		
-		glucoseVals = glucosess;
+		if (glucoseVals.size() > 0) {
+			for (int i=0; i<glucoseVals.size(); i++) {
+				long a = System.currentTimeMillis() - glucoseVals.get(i).getTimestamp();
+				if (a < 86400000) {
+					glucosesld.add(glucoseVals.get(i));
+				}
+			}
+		}
 		
 		alarms = alarmdao.listAttendedAlarms(usuario.getIMEI());
 		
 		for(int i=0; i<glucoseVals.size(); i++) {
 			
 			SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
-			Date date = new Date(glucoseVals.get(i).getTimestamp());
+			Date date = new Date(tenglucoses.get(i).getTimestamp());
 		    String strDate = sdfDate.format(date);
 			glucoseVals.get(i).setDate(strDate); 
 			//System.out.println(strDate+"eyyy");
@@ -97,7 +105,8 @@ public class InfoUsuarioServlet extends HttpServlet {
 		Collections.sort(alarms, Collections.reverseOrder(comparadora));
 		
 		req.getSession().setAttribute("alarms", new ArrayList<Alarm>(alarms));
-		req.getSession().setAttribute("glucoses", new ArrayList<GlucoseMeter>(glucoseVals));
+		req.getSession().setAttribute("glucosesld", new ArrayList<GlucoseMeter>(glucosesld));
+		req.getSession().setAttribute("tenglucoses", new ArrayList<GlucoseMeter>(tenglucoses));
 		req.getSession().setAttribute("usuario", usuario);
 		req.getSession().setAttribute("latlon", latlon);
 		RequestDispatcher view = req.getRequestDispatcher("Info.jsp");
