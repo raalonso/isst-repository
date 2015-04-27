@@ -15,7 +15,9 @@ public interface AlarmDAO {
 	public List<Alarm> listUnattendedAlarms();
 
 	public void clearAlarm(Long id);
-	void removeAlarm(long id);
+	public void removeAlarm(long id);
 	public Alarm getAlarmById(long id);
+	
+	public boolean anyUnattendedRecentAlarm(String originator, Integer type, Integer severity);
 	
 }

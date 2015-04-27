@@ -153,15 +153,20 @@ public class AlarmEndpoint {
 	public Alarm insertAlarm(Alarm alarm) {
 		
 		AlarmDAO alarm_dao = AlarmDAOImpl.getInstance();
-		
-		alarm_dao.addAlarm(alarm);
-		
-		ChannelService channelService = ChannelServiceFactory.getChannelService();
 
-		// PLEASE NOTE: (again) that this value should be different for EACH user
-		//
-		channelService.sendMessage(new ChannelMessage("OPERATOR1", alarm.getId().toString() + ", " + alarm.getName().toString()));		
-		
+		boolean filter = alarm_dao.anyUnattendedRecentAlarm(alarm.getOriginator(), alarm.getType(), alarm.getSeverity());
+		if (filter == true) {
+			System.out.println("Alarm filtered...");
+		}
+		else {
+			alarm_dao.addAlarm(alarm);
+			
+			ChannelService channelService = ChannelServiceFactory.getChannelService();
+
+			// PLEASE NOTE: (again) that this value should be different for EACH user
+			//
+			channelService.sendMessage(new ChannelMessage("OPERATOR1", alarm.getId().toString() + ", " + alarm.getName().toString()));		
+		}
 		
 //		EntityManager mgr = getEntityManager();
 //		try {
@@ -172,6 +177,7 @@ public class AlarmEndpoint {
 //		} finally {
 //			mgr.close();
 //		}
+
 		return alarm;
 	}
 

@@ -110,5 +110,23 @@ public class AlarmDAOImpl implements AlarmDAO {
 			em.close();
 		}
 	}
+
+	@Override
+	public boolean anyUnattendedRecentAlarm(String originator, Integer type,
+			Integer severity) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em
+				.createQuery("select t from Alarm t where t.originator = :originator and t.type = :type and t.severity = :severity and t.attended = false");
+		q.setParameter("originator", originator);
+		q.setParameter("type", type);
+		q.setParameter("severity", severity);
+		List<Alarm> alarms = q.getResultList();
+
+		if (alarms.size() > 0) {
+			return true;
+		}
+		
+		return false;
+	}
 	
 }
